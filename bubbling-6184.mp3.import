@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bubbling-6184.mp3-f5f51c996e8cf30477e37a706ac51c6e.mp3str"
+
+[deps]
+
+source_file="res://bubbling-6184.mp3"
+dest_files=[ "res://.import/bubbling-6184.mp3-f5f51c996e8cf30477e37a706ac51c6e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
