@@ -10,13 +10,23 @@ extends Area2D
 func _ready():
 	# connect onbodyentered signal to the function on_body_entered
 	connect("body_entered", self, "on_body_entered")
+	# connect onbodyexited signal to the function on_body_exited
+	connect("body_exited", self, "on_body_exited")
+
 	
 
 
 func on_body_entered(body):
 	# if the body is the player, then call the function on_player_entered
 	if body.is_in_group("player"):
-		body.vel.y = -10
+		body.can_rise = true
+
+
+func on_body_exited(body):
+	# if the body is the player, then call the function on_player_entered
+	if body.is_in_group("player"):
+		body.can_rise = false
+
 
 
 

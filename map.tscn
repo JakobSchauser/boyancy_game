@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
@@ -8,18 +8,28 @@
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://small_fish.tscn" type="PackedScene" id=8]
+[ext_resource path="res://add_light_occluders.gd" type="Script" id=9]
 [ext_resource path="res://intro.gd" type="Script" id=10]
 [ext_resource path="res://seaweed.png" type="Texture" id=11]
 [ext_resource path="res://Crab.tscn" type="PackedScene" id=12]
+[ext_resource path="res://blue.JPG" type="Texture" id=13]
+[ext_resource path="res://light.png" type="Texture" id=14]
+[ext_resource path="res://underwater-ambience-6201.mp3" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 32 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 320.5, 119 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 64, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 224 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 32, 96 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 258.5, 194.5 )
@@ -87,16 +97,37 @@ shader_param/MULTIPLIER = 0.56
 shader_param/SCALE = 0.5
 shader_param/SOFTNESS = 0.65
 
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -10, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.01
+color = Color( 1, 1, 1, 0.219608 )
+
 [node name="map" type="Node2D"]
 
-[node name="walls" type="StaticBody2D" parent="."]
+[node name="Blue" type="Sprite" parent="."]
+position = Vector2( 2133, -2265 )
+scale = Vector2( 31.1261, 37.2877 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="walls" type="StaticBody2D" parent="." groups=["light_occluder"]]
+script = ExtResource( 9 )
 
 [node name="horizontal" type="CollisionShape2D" parent="walls"]
-position = Vector2( 256, 384 )
+position = Vector2( 256, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls"]
-position = Vector2( 768, 384 )
+position = Vector2( 768, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D34" type="CollisionShape2D" parent="walls"]
@@ -104,7 +135,7 @@ position = Vector2( 5376, -1792 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D43" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5632, -2368 )
+position = Vector2( 4000, -2039 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D35" type="CollisionShape2D" parent="walls"]
@@ -112,7 +143,7 @@ position = Vector2( 6144, -1792 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D42" type="CollisionShape2D" parent="walls"]
-position = Vector2( 6144, -2368 )
+position = Vector2( 4512, -2039 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D36" type="CollisionShape2D" parent="walls"]
@@ -180,20 +211,11 @@ position = Vector2( 4864, -1792 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D30" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3200, -1792 )
+position = Vector2( 3151, -1544 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D47" type="CollisionShape2D" parent="walls"]
 position = Vector2( 3392, -1792 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D49" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3712, -1856 )
-rotation = 0.153682
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D51" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3200, -1920 )
 shape = SubResource( 1 )
 
 [node name="horizontal3" type="CollisionShape2D" parent="walls"]
@@ -213,123 +235,219 @@ position = Vector2( 1792, -1536 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D31" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3328, -2304 )
+position = Vector2( 1696, -1975 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D32" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, -2304 )
+position = Vector2( 1184, -1975 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D48" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4352, -2304 )
+position = Vector2( 2720, -1975 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D54" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3840, -2304 )
+position = Vector2( 2208, -1975 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D55" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3520, -2624 )
+position = Vector2( 1888, -2295 )
 shape = SubResource( 1 )
 
+[node name="CollisionShape2D77" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1402, -2593 )
+shape = SubResource( 11 )
+
 [node name="CollisionShape2D65" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3776, -2624 )
+position = Vector2( 2144, -2295 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D66" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -3264 )
+position = Vector2( 928, -2935 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D67" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -3392 )
+position = Vector2( 928, -3063 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D74" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1368, -2122 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D75" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1366, -2035 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D76" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1369, -2078 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D78" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1140, -2444 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D79" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1126, -2233 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D69" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1856, -3968 )
+position = Vector2( 224, -3639 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D70" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -3328 )
+position = Vector2( 928, -2999 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D86" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1140, -3497 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D94" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1179, -5395 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D87" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1516, -3399 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D88" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1343, -3125 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D89" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1142, -2104 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D95" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1333, -2096 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D90" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1263, -2100 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D91" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1172, -2058 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D92" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1529, -1026 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D93" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1176, -649 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D96" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1544, 403 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D61" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3712, -3200 )
+position = Vector2( 2080, -2871 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D62" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3200, -3200 )
+position = Vector2( 1568, -2871 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D63" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2688, -3200 )
+position = Vector2( 1056, -2871 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D68" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1792, -3328 )
+position = Vector2( 160, -2999 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D71" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2304, -3584 )
+position = Vector2( 607, -3252 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D83" type="CollisionShape2D" parent="walls"]
+position = Vector2( 731, -3249 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D72" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -4032 )
+position = Vector2( 928, -3703 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D80" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1211, -3651 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D81" type="CollisionShape2D" parent="walls"]
+position = Vector2( -82, -3630 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D82" type="CollisionShape2D" parent="walls"]
+position = Vector2( -238, -3276 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D84" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1857, -5394 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D85" type="CollisionShape2D" parent="walls"]
+position = Vector2( -2351, -5397 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D73" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2048, -4032 )
+position = Vector2( 416, -3703 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D64" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2304, -2944 )
+position = Vector2( 672, -2615 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D60" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, -2496 )
+position = Vector2( 1184, -2167 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D56" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4736, -2304 )
+position = Vector2( 3104, -1975 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D57" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4736, -3200 )
+position = Vector2( 3104, -2871 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D59" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5056, -4544 )
+position = Vector2( 3424, -4215 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D58" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4224, -3200 )
+position = Vector2( 2592, -2871 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1270, 1054 )
+position = Vector2( 1856, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1536, 384 )
+position = Vector2( 1536, 256 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1216, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1536, 768 )
+position = Vector2( 1536, 640 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1782, 1054 )
+position = Vector2( 1782, 926 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2304, 384 )
+position = Vector2( 2304, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1280, 0 )
+position = Vector2( 1024, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1792, 0 )
+position = Vector2( 2048, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D19" type="CollisionShape2D" parent="walls"]
@@ -338,6 +456,14 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D21" type="CollisionShape2D" parent="walls"]
 position = Vector2( 3328, 0 )
+shape = SubResource( 1 )
+
+[node name="horizontal4" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3151, -1280 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3151, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D22" type="CollisionShape2D" parent="walls"]
@@ -357,43 +483,47 @@ position = Vector2( 0, 192 )
 shape = SubResource( 2 )
 
 [node name="vertical2" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1024, 576 )
+position = Vector2( 2048, 384 )
 shape = SubResource( 2 )
 
 [node name="vertical6" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2048, 576 )
+position = Vector2( 2048, 448 )
 shape = SubResource( 2 )
 
 [node name="vertical3" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1280, 576 )
+position = Vector2( 1280, 448 )
+shape = SubResource( 2 )
+
+[node name="vertical88" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1280, 256 )
 shape = SubResource( 2 )
 
 [node name="vertical5" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1792, 576 )
+position = Vector2( 1792, 448 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2806, 1054 )
+position = Vector2( 2816, 576 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3072, 384 )
+position = Vector2( 3072, 256 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3072, 768 )
+position = Vector2( 3072, 384 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3318, 1054 )
+position = Vector2( 3328, 576 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3840, 384 )
+position = Vector2( 3840, 256 )
 shape = SubResource( 1 )
 
 [node name="vertical8" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, 576 )
+position = Vector2( 2560, 448 )
 shape = SubResource( 2 )
 
 [node name="vertical16" type="CollisionShape2D" parent="walls"]
@@ -405,11 +535,27 @@ position = Vector2( 2560, -192 )
 shape = SubResource( 2 )
 
 [node name="vertical18" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3072, -1088 )
+position = Vector2( 2924, -1088 )
+shape = SubResource( 2 )
+
+[node name="vertical53" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2893, -236 )
+shape = SubResource( 2 )
+
+[node name="vertical93" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2939, -217 )
 shape = SubResource( 2 )
 
 [node name="vertical19" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3072, -192 )
+position = Vector2( 2587, -543 )
+shape = SubResource( 2 )
+
+[node name="vertical69" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2608, -978 )
+shape = SubResource( 2 )
+
+[node name="vertical95" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2874, -1057 )
 shape = SubResource( 2 )
 
 [node name="vertical34" type="CollisionShape2D" parent="walls"]
@@ -417,23 +563,23 @@ position = Vector2( 2560, -640 )
 shape = SubResource( 2 )
 
 [node name="vertical35" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3072, -640 )
+position = Vector2( 2924, -640 )
 shape = SubResource( 2 )
 
 [node name="vertical22" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -640 )
+position = Vector2( 1280, -640 )
 shape = SubResource( 2 )
 
 [node name="vertical23" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -192 )
+position = Vector2( 1280, -192 )
 shape = SubResource( 2 )
 
 [node name="vertical24" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -640 )
+position = Vector2( 1792, -640 )
 shape = SubResource( 2 )
 
 [node name="vertical25" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -192 )
+position = Vector2( 1792, -192 )
 shape = SubResource( 2 )
 
 [node name="vertical26" type="CollisionShape2D" parent="walls"]
@@ -441,7 +587,7 @@ position = Vector2( -1600, -1408 )
 shape = SubResource( 2 )
 
 [node name="vertical27" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -1088 )
+position = Vector2( 1280, -1088 )
 shape = SubResource( 2 )
 
 [node name="vertical28" type="CollisionShape2D" parent="walls"]
@@ -449,7 +595,7 @@ position = Vector2( -1088, -1408 )
 shape = SubResource( 2 )
 
 [node name="vertical29" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -1088 )
+position = Vector2( 1792, -1088 )
 shape = SubResource( 2 )
 
 [node name="vertical54" type="CollisionShape2D" parent="walls"]
@@ -532,44 +678,80 @@ shape = SubResource( 2 )
 position = Vector2( -1088, -2741 )
 shape = SubResource( 2 )
 
+[node name="vertical96" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1616, -5201 )
+shape = SubResource( 2 )
+
+[node name="vertical97" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -3620 )
+shape = SubResource( 2 )
+
+[node name="vertical98" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1104, -5212 )
+shape = SubResource( 2 )
+
+[node name="vertical102" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1616, -4772 )
+shape = SubResource( 2 )
+
+[node name="vertical103" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1104, -4783 )
+shape = SubResource( 2 )
+
+[node name="vertical104" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1616, -4350 )
+shape = SubResource( 2 )
+
+[node name="vertical105" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1104, -4361 )
+shape = SubResource( 2 )
+
+[node name="vertical106" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1606, -4020 )
+shape = SubResource( 2 )
+
+[node name="vertical107" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1094, -4031 )
+shape = SubResource( 2 )
+
+[node name="vertical99" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -3620 )
+shape = SubResource( 2 )
+
 [node name="vertical20" type="CollisionShape2D" parent="walls"]
 position = Vector2( 2560, -1728 )
 shape = SubResource( 2 )
 
-[node name="vertical10" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3584, 576 )
-shape = SubResource( 2 )
-
 [node name="vertical4" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1024, 862 )
+position = Vector2( 1024, 734 )
 shape = SubResource( 2 )
 
 [node name="vertical7" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2048, 862 )
+position = Vector2( 2048, 734 )
 shape = SubResource( 2 )
 
 [node name="vertical9" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, 862 )
+position = Vector2( 2560, 734 )
 shape = SubResource( 2 )
 
 [node name="vertical11" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3584, 862 )
+position = Vector2( 3584, 448 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4352, 768 )
+position = Vector2( 4354, 314 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D18" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4864, 768 )
+position = Vector2( 4866, 314 )
 shape = SubResource( 1 )
 
 [node name="vertical14" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4096, 576 )
+position = Vector2( 4096, 448 )
 shape = SubResource( 2 )
 
 [node name="vertical15" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5120, 576 )
+position = Vector2( 5120, 477 )
 shape = SubResource( 2 )
 
 [node name="vertical21" type="CollisionShape2D" parent="walls"]
@@ -601,195 +783,200 @@ position = Vector2( 6400, -1216 )
 shape = SubResource( 2 )
 
 [node name="vertical36" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -2112 )
+position = Vector2( 928, -1783 )
 shape = SubResource( 2 )
 
 [node name="vertical57" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -2560 )
+position = Vector2( 928, -2231 )
 shape = SubResource( 2 )
 
 [node name="vertical58" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, -2752 )
+position = Vector2( 928, -2423 )
 shape = SubResource( 2 )
 
 [node name="vertical59" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2048, -3136 )
+position = Vector2( 416, -2807 )
 shape = SubResource( 2 )
 
 [node name="vertical61" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1856, -3584 )
+position = Vector2( 224, -3255 )
 shape = SubResource( 2 )
 
 [node name="vertical60" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2304, -3584 )
+position = Vector2( 672, -3255 )
 shape = SubResource( 2 )
 
 [node name="vertical62" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, -3456 )
+position = Vector2( 1184, -3127 )
 shape = SubResource( 2 )
 
 [node name="vertical63" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, -3840 )
-shape = SubResource( 2 )
-
-[node name="vertical64" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1408, -2560 )
-shape = SubResource( 2 )
-
-[node name="vertical65" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1408, -3008 )
-shape = SubResource( 2 )
-
-[node name="vertical66" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1408, -3456 )
-shape = SubResource( 2 )
-
-[node name="vertical67" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1408, -3840 )
-shape = SubResource( 2 )
-
-[node name="vertical68" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1728, -2240 )
-shape = SubResource( 2 )
-
-[node name="vertical69" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1600, -3840 )
-rotation = 0.828573
+position = Vector2( 1184, -3511 )
 shape = SubResource( 2 )
 
 [node name="vertical70" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2688, -3904 )
-rotation = -0.821079
+position = Vector2( 7, -3441 )
+shape = SubResource( 2 )
+
+[node name="vertical64" type="CollisionShape2D" parent="walls"]
+position = Vector2( -224, -2231 )
+shape = SubResource( 2 )
+
+[node name="vertical65" type="CollisionShape2D" parent="walls"]
+position = Vector2( -224, -2679 )
+shape = SubResource( 2 )
+
+[node name="vertical66" type="CollisionShape2D" parent="walls"]
+position = Vector2( -224, -3127 )
+shape = SubResource( 2 )
+
+[node name="vertical67" type="CollisionShape2D" parent="walls"]
+position = Vector2( -224, -3511 )
+shape = SubResource( 2 )
+
+[node name="vertical100" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1125, -5634 )
+shape = SubResource( 2 )
+
+[node name="vertical101" type="CollisionShape2D" parent="walls"]
+position = Vector2( -2602, -5630 )
+shape = SubResource( 2 )
+
+[node name="vertical68" type="CollisionShape2D" parent="walls"]
+position = Vector2( 96, -1911 )
 shape = SubResource( 2 )
 
 [node name="vertical41" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5376, -2560 )
+position = Vector2( 3744, -2231 )
 shape = SubResource( 2 )
 
-[node name="vertical53" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5302, -2560 )
-rotation = -0.335423
+[node name="vertical94" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3744, -2014 )
 shape = SubResource( 2 )
 
 [node name="vertical45" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4992, -2496 )
-shape = SubResource( 2 )
-
-[node name="vertical46" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4992, -2752 )
+position = Vector2( 3360, -2167 )
 shape = SubResource( 2 )
 
 [node name="vertical55" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4416, -2496 )
+position = Vector2( 2784, -2167 )
 shape = SubResource( 2 )
 
 [node name="vertical56" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4416, -2752 )
+position = Vector2( 2784, -2423 )
 shape = SubResource( 2 )
 
 [node name="vertical44" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5376, -3008 )
+position = Vector2( 3744, -2679 )
 shape = SubResource( 2 )
 
 [node name="vertical71" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4032, -2752 )
+position = Vector2( 2400, -2423 )
+shape = SubResource( 2 )
+
+[node name="vertical91" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1948, -2541 )
+shape = SubResource( 2 )
+
+[node name="vertical92" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1948, -2616 )
 shape = SubResource( 2 )
 
 [node name="vertical72" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4032, -3200 )
+position = Vector2( 2400, -2871 )
 shape = SubResource( 2 )
 
 [node name="vertical47" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4992, -3392 )
+position = Vector2( 3360, -3063 )
 shape = SubResource( 2 )
 
 [node name="vertical48" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5056, -3840 )
+position = Vector2( 3424, -3511 )
 shape = SubResource( 2 )
 
 [node name="vertical49" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5376, -3392 )
+position = Vector2( 3744, -3063 )
 shape = SubResource( 2 )
 
 [node name="vertical50" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5120, -4288 )
+position = Vector2( 3488, -3959 )
 shape = SubResource( 2 )
 
 [node name="vertical51" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5312, -4288 )
+position = Vector2( 3680, -3959 )
 shape = SubResource( 2 )
 
 [node name="vertical52" type="CollisionShape2D" parent="walls"]
-position = Vector2( 5312, -3840 )
-shape = SubResource( 2 )
-
-[node name="vertical12" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, 576 )
+position = Vector2( 3680, -3511 )
 shape = SubResource( 2 )
 
 [node name="vertical13" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3328, 576 )
-shape = SubResource( 2 )
+position = Vector2( 2816, 320 )
+shape = SubResource( 10 )
 
-[node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1364, -2554 )
+[node name="vertical90" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3170, -1666 )
+shape = SubResource( 10 )
 
-[node name="breather" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1907, 981 )
+[node name="vertical89" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3328, 320 )
+shape = SubResource( 10 )
 
-[node name="breather2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3443, 981 )
+[node name="breather" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1962, 183 )
 
-[node name="breather5" parent="." instance=ExtResource( 2 )]
+[node name="breather2" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 3510, 504 )
+
+[node name="breather5" parent="walls" instance=ExtResource( 2 )]
 position = Vector2( 5888, -384 )
 
-[node name="breather6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4704, -2379 )
+[node name="breather6" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 3072, -2050 )
 
-[node name="breather11" parent="." instance=ExtResource( 2 )]
-position = Vector2( 5184, -1856 )
+[node name="breather11" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 3035, -1599 )
 
-[node name="breather7" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2240, -3008 )
+[node name="breather12" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 3547, -1832 )
 
-[node name="breather9" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3456, -2368 )
+[node name="breather7" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 608, -2679 )
 
-[node name="breather10" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2944, -2560 )
+[node name="breather9" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1824, -2039 )
 
-[node name="breather8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2688, -3264 )
+[node name="breather10" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1374, -2226 )
 
-[node name="breather3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3005, 311 )
+[node name="breather13" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1819, -2341 )
 
-[node name="breather4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4221, 695 )
+[node name="breather14" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1005, -2215 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = -1472.0
-margin_top = -2469.0
-margin_right = -704.0
-margin_bottom = -2325.0
+[node name="breather8" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 1056, -2935 )
+
+[node name="breather3" parent="walls" instance=ExtResource( 2 )]
+position = Vector2( 2830, 187 )
+
+[node name="Label" type="Label" parent="walls"]
+margin_left = -1550.0
+margin_top = -5786.0
+margin_right = -270.0
+margin_bottom = -5209.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
-text = "S to descend"
+text = "S 
+to descend"
+align = 1
 
-[node name="Label3" type="Label" parent="."]
-margin_left = -1547.0
-margin_top = -1344.0
-margin_right = 506.0
-margin_bottom = -1024.0
-rect_scale = Vector2( 0.2, 0.2 )
-custom_fonts/font = ExtResource( 3 )
-text = "Moving towards the target now"
-
-[node name="Label8" type="Label" parent="."]
-margin_left = -1532.0
-margin_top = -2236.0
-margin_right = 388.0
-margin_bottom = 1436.0
+[node name="Label8" type="Label" parent="walls"]
+margin_left = -1528.0
+margin_top = -4766.0
+margin_right = 392.0
+margin_bottom = 12341.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "You are the unmanned rover AEGIR.
@@ -798,7 +985,22 @@ text = "You are the unmanned rover AEGIR.
 
 
 
-You are to explore the deep sea where no human dare
+
+
+
+
+
+
+You are to explore the deep sea where no human dare go
+
+
+
+
+
+
+
+
+
 
 
 
@@ -808,105 +1010,165 @@ You are not designed to ever return to the surface
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 You have recently noticed signs of a previously unknown life form"
 align = 1
 autowrap = true
 
-[node name="Label4" type="Label" parent="."]
-margin_left = -1547.0
-margin_top = -1088.0
-margin_right = 560.0
-margin_bottom = -768.0
+[node name="Label4" type="Label" parent="walls"]
+margin_left = -1553.0
+margin_top = -545.0
+margin_right = 562.0
+margin_bottom = 322.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Pressure is at 200 psi and rising"
+align = 1
+autowrap = true
 
-[node name="Label5" type="Label" parent="."]
-margin_left = -1547.0
-margin_top = -832.0
-margin_right = 560.0
-margin_bottom = -512.0
+[node name="Label5" type="Label" parent="walls"]
+margin_left = -1537.0
+margin_top = -99.0001
+margin_right = 570.0
+margin_bottom = 768.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Depth estimated at 8.2 kilometers"
+align = 1
+autowrap = true
 
-[node name="Label6" type="Label" parent="."]
-margin_left = -1563.0
-margin_top = -539.0
-margin_right = 572.0
-margin_bottom = -219.0
+[node name="Label7" type="Label" parent="walls"]
+margin_left = -1564.0
+margin_top = 444.0
+margin_right = 571.0
+margin_bottom = 1021.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
-text = "Target last seen at 8.6 kilometers"
+text = "Take a deep breath, AEGIR!"
+align = 1
+autowrap = true
 
-[node name="Label7" type="Label" parent="."]
-margin_left = -1552.0
-margin_top = -312.0
-margin_right = 583.0
-margin_bottom = 7.99994
+[node name="Label9" type="Label" parent="walls"]
+margin_left = 1344.0
+margin_top = -96.0
+margin_right = 3479.0
+margin_bottom = 481.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
-text = "Take a deep breath, AEGIR:
-You might encounter them soon! "
+text = "Your boyancy module is gone"
+align = 1
+autowrap = true
 
-[node name="Label2" type="Label" parent="."]
-margin_left = -1472.0
-margin_top = -2661.0
-margin_right = -628.0
-margin_bottom = -2517.0
+[node name="Label10" type="Label" parent="walls"]
+margin_left = 1941.0
+margin_top = 64.0
+margin_right = 4076.0
+margin_bottom = 641.0
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = ExtResource( 3 )
+text = "W
+to fill air tank"
+align = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="walls"]
+margin_left = -2658.0
+margin_top = -5780.0
+margin_right = -965.0
+margin_bottom = -5203.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
-text = "A & D to move"
+text = "A & D
+to move"
+align = 1
 
-[node name="Seaweed" type="Sprite" parent="."]
+[node name="Seaweed" type="Sprite" parent="walls"]
 material = ExtResource( 4 )
 position = Vector2( 4264, -1389 )
 scale = Vector2( 0.269648, 0.54816 )
 texture = ExtResource( 11 )
 
-[node name="Seaweed2" type="Sprite" parent="Seaweed"]
+[node name="Seaweed2" type="Sprite" parent="walls/Seaweed"]
 material = ExtResource( 4 )
 position = Vector2( 400.523, 32.8374 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
 
-[node name="Seaweed3" type="Sprite" parent="Seaweed"]
+[node name="Seaweed3" type="Sprite" parent="walls/Seaweed"]
 material = ExtResource( 4 )
 position = Vector2( 819.589, -43.7827 )
 scale = Vector2( 1.27158, 1.35477 )
 texture = ExtResource( 11 )
 
-[node name="pickup" parent="." instance=ExtResource( 6 )]
+[node name="pickup" parent="walls" instance=ExtResource( 6 )]
 position = Vector2( 4994, -1336 )
 
-[node name="boyancy_upgrade" parent="." instance=ExtResource( 7 )]
-position = Vector2( 4288, -2368 )
+[node name="pickup4" parent="walls" instance=ExtResource( 6 )]
+position = Vector2( 1672, -2742 )
 
-[node name="pickup3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 5215, -4445 )
+[node name="pickup5" parent="walls" instance=ExtResource( 6 )]
+position = Vector2( 415, -3056 )
 
-[node name="pickup2" parent="." instance=ExtResource( 6 )]
+[node name="boyancy_upgrade" parent="walls" instance=ExtResource( 7 )]
+position = Vector2( 2656, -2039 )
+
+[node name="txt" parent="walls/boyancy_upgrade" index="0"]
+margin_left = -453.0
+margin_top = -130.0
+margin_right = 1600.0
+margin_bottom = 602.0
+
+[node name="pickup3" parent="walls" instance=ExtResource( 6 )]
+position = Vector2( 3583, -4116 )
+
+[node name="pickup2" parent="walls" instance=ExtResource( 6 )]
 position = Vector2( 6592, -448 )
 
-[node name="small_fish" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4149, -1366 )
+[node name="small_fish" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1583, -2368 )
 
-[node name="small_fish2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4478, -1419 )
+[node name="small_fish2" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1254, -2421 )
 
-[node name="small_fish3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4641, -1430 )
+[node name="small_fish3" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1091, -2432 )
 
-[node name="small_fish4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4572, -1567 )
+[node name="small_fish4" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1160, -2569 )
 
-[node name="small_fish5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4240, -1563 )
+[node name="small_fish5" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1492, -2565 )
 
-[node name="small_fish6" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4240, -1563 )
+[node name="small_fish6" parent="walls" instance=ExtResource( 8 )]
+position = Vector2( -1492, -2565 )
+
+[node name="Crab" parent="walls" instance=ExtResource( 12 )]
+position = Vector2( 3005, -1397 )
+scale = Vector2( 0.633276, 0.611085 )
+
+[node name="Crab3" parent="walls" instance=ExtResource( 12 )]
+position = Vector2( 2456, -1401 )
+scale = Vector2( -0.565232, 0.599902 )
+
+[node name="Crab2" parent="walls" instance=ExtResource( 12 )]
+position = Vector2( 4303, 156 )
+scale = Vector2( 0.791507, 0.793995 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2420, -5537 )
 
 [node name="intro_area" type="Area2D" parent="."]
+position = Vector2( 25, -22 )
 script = ExtResource( 10 )
 
 [node name="intro_fish" parent="intro_area" instance=ExtResource( 5 )]
@@ -923,18 +1185,16 @@ position = Vector2( -1333, 811 )
 shape = SubResource( 5 )
 
 [node name="startpos" type="Position2D" parent="." groups=["startpos"]]
-position = Vector2( 256, -128 )
+position = Vector2( 1557, -93 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -945,10 +1205,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0313726, 0, 0.188235, 1 )
 
-[node name="Crab" parent="." instance=ExtResource( 12 )]
-position = Vector2( 4744, -1377 )
-scale = Vector2( 0.4, 0.4 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+autoplay = true
 
-[node name="Crab2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 4976, 669 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 1483, 1465 )
+amount = 500
+lifetime = 500.0
+preprocess = 600.0
+visibility_rect = Rect2( -5000, 0, 10000, -10000 )
+process_material = SubResource( 12 )
+texture = ExtResource( 14 )
+
+[editable path="walls/boyancy_upgrade"]

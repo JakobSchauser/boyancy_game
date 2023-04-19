@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/inflation.mp3-02a802864a496d0ae00d60819147d891.mp3str"
+
+[deps]
+
+source_file="res://inflation.mp3"
+dest_files=[ "res://.import/inflation.mp3-02a802864a496d0ae00d60819147d891.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -6,6 +6,7 @@ extends Area2D
 # var b = "text"
 
 var direction = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# connect onbodyentered signal to the function on_body_entered

@@ -7,6 +7,8 @@ var off_color = Color(0.1,0.1,0.1)
 
 var has_boyancy = true
 
+var can_rise = false
+
 var time = 0
 var rot_offset = 0
 var noise = OpenSimplexNoise.new()
@@ -44,7 +46,7 @@ func _physics_process(delta):
 	time += delta
 	
 	if not vel.y < 0:
-		vel *= 0.9
+		vel *= 0.96
 
 	if vel.y < 0:
 		var vy = vel.y
@@ -60,6 +62,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_down") and has_boyancy:
 		if vel.y < 0:
 			vel.y = 0
+			$inflation.stop()
+			$air_release.play()
 			
 
 	if not has_boyancy and vel.y >= 0:
@@ -69,13 +73,19 @@ func _physics_process(delta):
 		if not vel.y < 0:
 			vel.y += 1
 	
+	if Input.is_action_just_pressed("ui_up") and can_rise:
+		can_rise = false
+		vel.y = -20
+		$inflation.play()
+	
+
 	$Particles2D.emitting = (abs(vel.length()) > 0.4) # Input.is_action_pressed("ui_down")
 	$thrust.emitting = (abs(vel.length()) > 2) # Input.is_action_pressed("ui_down")
 
-	$bubbles.stream_paused = (abs(vel.x) < 0.4)
+	$bubbles.stream_paused = (abs(vel.x) < 10) and (abs(vel.y) < 10)
 	
 	$release.emitting = Input.is_action_pressed("ui_down") and has_boyancy
-	$air_release.stream_paused = !(Input.is_action_pressed("ui_down") and has_boyancy)
+	$air_release_long.stream_paused = !(Input.is_action_pressed("ui_down") and has_boyancy)
 
 	# if(vel.x < 0):
 	# 	$Sprite.scale.x = lerp($Sprite.scale.x, -1, 0.05*abs(vel.x)/20)
@@ -83,9 +93,9 @@ func _physics_process(delta):
 	# 	$Sprite.scale.x = lerp($Sprite.scale.x, 1, 0.05*abs(vel.x)/20)
 
 
-
-	vel.x = clamp(vel.x, -20, 20)
-	vel.y = clamp(vel.y, -20, 20)
+	var speed = 80
+	vel.x = clamp(vel.x, -speed, speed)
+	vel.y = clamp(vel.y, -speed, speed)
 
 	var move = move_and_slide(vel*10, Vector2(0,-1))
 
@@ -95,6 +105,7 @@ func _physics_process(delta):
 	if get_slide_count() > 0 and is_on_ceiling():
 		if vel.y < 0:
 			vel.y = 0
+			$inflation.stop()
 	
 	# rotate based on vel.x
 	rotation = vel.x * 0.02 + rot_offset

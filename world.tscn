@@ -206,7 +206,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -253, 720 )
+position = Vector2( -286, 789 )
 amount = 100
 lifetime = 100.0
 preprocess = 600.0

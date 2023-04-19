@@ -11,16 +11,15 @@ config_version=4
 [application]
 
 config/name="lvl99jam"
-run/main_scene="res://world.tscn"
+run/main_scene="res://map.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 G="*res://G.gd"
+
 [display]
 
-window/size/width=512
-window/size/height=300
 window/size/fullscreen=true
 window/size/test_width=1024
 window/size/test_height=600

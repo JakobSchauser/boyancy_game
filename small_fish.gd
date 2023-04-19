@@ -12,8 +12,9 @@ var timer = 0
 var player = null
 var xscale = 1
 func _ready():
-	newpos = position + Vector2(rand_range(-1,1), rand_range(-1,1))*200
-	$small_fish.scale /= rand_range(1, 3)
+	newpos = position + Vector2(rand_range(-1,1), rand_range(-1,1))*500
+	$small_fish.scale.x /= rand_range(1, 3)
+	$small_fish.scale.y /= rand_range(1, 3)
 	xscale = $small_fish.scale.x
 
 	player = get_tree().get_nodes_in_group("player")[0]
@@ -29,7 +30,7 @@ func _process(delta):
 		timer -= delta
 		return
 
-	position = position.linear_interpolate(newpos, 0.01)
+	position = position.linear_interpolate(newpos, 0.03)
 
 	if position.x > newpos.x:
 		$small_fish.scale.x = -xscale
@@ -43,16 +44,16 @@ func _process(delta):
 		timer = rand_range(0.5, 3)
 		var playerpos = player.position
 
-		if (position.distance_to(playerpos) > 1000):
-			newpos = playerpos
+		if (position.distance_to(playerpos) > 2000):
+			newpos = playerpos + Vector2(rand_range(-1,1), rand_range(-1,1))*500
 		else:
-			newpos = position + Vector2(rand_range(-1,1), rand_range(-1/200,1/200))*200
+			newpos = position + Vector2(rand_range(-1,1), rand_range(-1/500,1/500))*500
 
 
 func _on_body_entered(body):
 	# if the body is the player, then call the function on_player_entered
 	if body.is_in_group("player"):
-		var changex = sign(body.position.x - position.x)*200
+		var changex = sign(body.position.x - position.x)*500
 		var change = Vector2(changex, rand_range(-1,1)*3)
 		newpos = position - change 
 		timer = 0
