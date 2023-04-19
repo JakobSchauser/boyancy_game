@@ -23,7 +23,7 @@ extents = Vector2( 372.5, 19 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.5, 164 )
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
 
 uniform float wave_speed = 3.0; //wave loop speed
@@ -38,12 +38,12 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
+shader = SubResource( 11 )
 shader_param/wave_speed = 3.0
 shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.15
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
 uniform vec2 player_position;
 uniform vec4 color : hint_color = vec4(0.305, 0.298, 0.341,1);
@@ -79,7 +79,7 @@ void fragment(){
 "
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+shader = SubResource( 12 )
 shader_param/player_position = Vector2( 0.5, 0.5 )
 shader_param/color = Color( 0.0313726, 0, 0.188235, 1 )
 shader_param/MULTIPLIER = 0.56
@@ -198,6 +198,12 @@ anchor_bottom = 1.0
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="fadetoblack" type="ColorRect" parent="CanvasLayer" groups=["fadetoblack"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -253, 720 )

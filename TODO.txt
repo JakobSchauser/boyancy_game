@@ -15,4 +15,5 @@ More sounds
 music
 Darkness
 Checkpoints
+skift farve på spillerlys
 

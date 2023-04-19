@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
@@ -6,9 +6,16 @@
 [ext_resource path="res://sillouette.gdshader" type="Shader" id=4]
 [ext_resource path="res://crab.png" type="Texture" id=5]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
+[ext_resource path="res://small_fish.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ictineo.png" type="Texture" id=9]
+[ext_resource path="res://intro.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 224 )
@@ -16,6 +23,72 @@ extents = Vector2( 32, 224 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
 shader_param/BG_Color = Color( 0.0313726, 0, 0.188235, 1 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 258.5, 194.5 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform float wave_speed = 3.0; //wave loop speed
+uniform float wave_freq = 10.0; //wave vertical freq
+uniform float wave_width = 1; //wave width 
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	vec2 wave_uv_offset;
+	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	//COLOR = vec4(wave_uv_offset,0.0,1.0);
+	COLOR = texture(SCREEN_TEXTURE,scale_UV+wave_uv_offset);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/wave_speed = 3.0
+shader_param/wave_freq = 10.0
+shader_param/wave_width = 0.15
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+uniform vec2 player_position;
+uniform vec4 color : hint_color = vec4(0.305, 0.298, 0.341,1);
+
+uniform float MULTIPLIER = 0.56;
+uniform float SCALE = 0.5;
+uniform float SOFTNESS = 0.65;
+
+
+float circle(vec2 position, float radius, float feather)
+{
+	return smoothstep(radius, radius + feather, dot(position, position ) * 8.0);
+}
+
+float vigTypeB(vec2 dude){
+	float vignette = circle(dude - vec2(player_position.x,player_position.y ), 0.1, 0.5);
+	return vignette;
+}
+
+float vigTypeA(vec2 dude){
+	float val = distance(vec2(dude.x , dude.y * MULTIPLIER), vec2(player_position.x , player_position.y * MULTIPLIER));
+	val = val / SCALE;
+	float vignette = smoothstep(0.2, SOFTNESS, val);
+	return vignette;
+}
+
+void fragment(){
+	COLOR = vec4(color.rgb , vigTypeA(UV));
+}
+
+
+
+"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/player_position = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 0.0313726, 0, 0.188235, 1 )
+shader_param/MULTIPLIER = 0.56
+shader_param/SCALE = 0.5
+shader_param/SOFTNESS = 0.65
 
 [node name="map" type="Node2D"]
 
@@ -156,6 +229,66 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D54" type="CollisionShape2D" parent="walls"]
 position = Vector2( 3840, -2304 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3520, -2624 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3776, -2624 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -3264 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D67" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -3392 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D69" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1856, -3968 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D70" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -3328 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D61" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3712, -3200 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D62" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3200, -3200 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2688, -3200 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D68" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1792, -3328 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D71" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2304, -3584 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D72" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -4032 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D73" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2048, -4032 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2304, -2944 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D60" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2816, -2496 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D56" type="CollisionShape2D" parent="walls"]
@@ -319,7 +452,7 @@ position = Vector2( 512, -192 )
 shape = SubResource( 2 )
 
 [node name="vertical26" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -1536 )
+position = Vector2( -1600, -1408 )
 shape = SubResource( 2 )
 
 [node name="vertical27" type="CollisionShape2D" parent="walls"]
@@ -327,27 +460,75 @@ position = Vector2( 0, -1088 )
 shape = SubResource( 2 )
 
 [node name="vertical28" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -1536 )
+position = Vector2( -1088, -1408 )
 shape = SubResource( 2 )
 
 [node name="vertical29" type="CollisionShape2D" parent="walls"]
 position = Vector2( 512, -1088 )
 shape = SubResource( 2 )
 
+[node name="vertical54" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -512 )
+shape = SubResource( 2 )
+
+[node name="vertical73" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -64 )
+shape = SubResource( 2 )
+
+[node name="vertical74" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -512 )
+shape = SubResource( 2 )
+
+[node name="vertical75" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -64 )
+shape = SubResource( 2 )
+
+[node name="vertical85" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, 64 )
+shape = SubResource( 2 )
+
+[node name="vertical76" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -960 )
+shape = SubResource( 2 )
+
+[node name="vertical77" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -960 )
+shape = SubResource( 2 )
+
+[node name="vertical78" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, 832 )
+shape = SubResource( 2 )
+
+[node name="vertical79" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, 1280 )
+shape = SubResource( 2 )
+
+[node name="vertical80" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, 832 )
+shape = SubResource( 2 )
+
+[node name="vertical81" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, 1280 )
+shape = SubResource( 2 )
+
+[node name="vertical82" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, 384 )
+shape = SubResource( 2 )
+
 [node name="vertical30" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -2432 )
+position = Vector2( -1600, -2304 )
 shape = SubResource( 2 )
 
 [node name="vertical31" type="CollisionShape2D" parent="walls"]
-position = Vector2( 0, -1984 )
+position = Vector2( -1600, -1856 )
 shape = SubResource( 2 )
 
 [node name="vertical32" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -2432 )
+position = Vector2( -1088, -2304 )
 shape = SubResource( 2 )
 
 [node name="vertical33" type="CollisionShape2D" parent="walls"]
-position = Vector2( 512, -1984 )
+position = Vector2( -1088, -1856 )
 shape = SubResource( 2 )
 
 [node name="vertical20" type="CollisionShape2D" parent="walls"]
@@ -410,8 +591,71 @@ shape = SubResource( 2 )
 position = Vector2( 2560, -2112 )
 shape = SubResource( 2 )
 
+[node name="vertical57" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -2560 )
+shape = SubResource( 2 )
+
+[node name="vertical58" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, -2752 )
+shape = SubResource( 2 )
+
+[node name="vertical59" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2048, -3136 )
+shape = SubResource( 2 )
+
+[node name="vertical61" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1856, -3584 )
+shape = SubResource( 2 )
+
+[node name="vertical60" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2304, -3584 )
+shape = SubResource( 2 )
+
+[node name="vertical62" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2816, -3456 )
+shape = SubResource( 2 )
+
+[node name="vertical63" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2816, -3840 )
+shape = SubResource( 2 )
+
+[node name="vertical64" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1408, -2560 )
+shape = SubResource( 2 )
+
+[node name="vertical65" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1408, -3008 )
+shape = SubResource( 2 )
+
+[node name="vertical66" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1408, -3456 )
+shape = SubResource( 2 )
+
+[node name="vertical67" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1408, -3840 )
+shape = SubResource( 2 )
+
+[node name="vertical68" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1728, -2240 )
+shape = SubResource( 2 )
+
+[node name="vertical69" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1600, -3840 )
+rotation = 0.828573
+shape = SubResource( 2 )
+
+[node name="vertical70" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2688, -3904 )
+rotation = -0.821079
+shape = SubResource( 2 )
+
 [node name="vertical41" type="CollisionShape2D" parent="walls"]
 position = Vector2( 5376, -2560 )
+shape = SubResource( 2 )
+
+[node name="vertical53" type="CollisionShape2D" parent="walls"]
+position = Vector2( 5302, -2560 )
+rotation = -0.335423
 shape = SubResource( 2 )
 
 [node name="vertical45" type="CollisionShape2D" parent="walls"]
@@ -434,12 +678,12 @@ shape = SubResource( 2 )
 position = Vector2( 5376, -3008 )
 shape = SubResource( 2 )
 
-[node name="vertical53" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4800, -2688 )
+[node name="vertical71" type="CollisionShape2D" parent="walls"]
+position = Vector2( 4032, -2752 )
 shape = SubResource( 2 )
 
-[node name="vertical54" type="CollisionShape2D" parent="walls"]
-position = Vector2( 4800, -3136 )
+[node name="vertical72" type="CollisionShape2D" parent="walls"]
+position = Vector2( 4032, -3200 )
 shape = SubResource( 2 )
 
 [node name="vertical47" type="CollisionShape2D" parent="walls"]
@@ -475,7 +719,7 @@ position = Vector2( 3328, 576 )
 shape = SubResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 320, 256 )
+position = Vector2( -1344, 128 )
 
 [node name="breather" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1920, 1088 )
@@ -487,7 +731,22 @@ position = Vector2( 3456, 1088 )
 position = Vector2( 5888, -384 )
 
 [node name="breather6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4480, -2368 )
+position = Vector2( 4704, -2379 )
+
+[node name="breather11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 5184, -1856 )
+
+[node name="breather7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2240, -3008 )
+
+[node name="breather9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3456, -2368 )
+
+[node name="breather10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2944, -2560 )
+
+[node name="breather8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2688, -3264 )
 
 [node name="breather3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 3008, 256 )
@@ -496,32 +755,82 @@ position = Vector2( 3008, 256 )
 position = Vector2( 4224, 640 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 128.0
-margin_top = -2240.0
-margin_right = 896.0
-margin_bottom = -2096.0
+margin_left = -1472.0
+margin_top = -2304.0
+margin_right = -704.0
+margin_bottom = -2160.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
 text = "S to descend"
 
 [node name="Label3" type="Label" parent="."]
-margin_left = 64.0
-margin_top = -1920.0
-margin_right = 2117.0
-margin_bottom = -1482.0
+margin_left = -1536.0
+margin_top = -1344.0
+margin_right = 517.0
+margin_bottom = -1024.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
-text = "Moving towards the target now
+text = "Moving towards the target now"
 
-Pressure is at 200 psi
+[node name="Label8" type="Label" parent="."]
+margin_left = -1536.0
+margin_top = -2112.0
+margin_right = 384.0
+margin_bottom = -939.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 3 )
+text = "You are the unmanned rover AEGIR.
 
-Depth estimated at 62 kilometers"
+You are to explore the deep sea where no human dare
+
+You are not designed to ever return to the surface 
+
+You have noticed signs of a previously unknown"
+align = 1
+autowrap = true
+
+[node name="Label4" type="Label" parent="."]
+margin_left = -1536.0
+margin_top = -1088.0
+margin_right = 517.0
+margin_bottom = -768.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Pressure is at 200 psi and rising"
+
+[node name="Label5" type="Label" parent="."]
+margin_left = -1536.0
+margin_top = -832.0
+margin_right = 571.0
+margin_bottom = -512.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Depth estimated at 8.2 kilometers"
+
+[node name="Label6" type="Label" parent="."]
+margin_left = -1552.0
+margin_top = -539.0
+margin_right = 583.0
+margin_bottom = -219.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Target last seen at 8.6 kilometers"
+
+[node name="Label7" type="Label" parent="."]
+margin_left = -1552.0
+margin_top = -312.0
+margin_right = 583.0
+margin_bottom = 7.99994
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 3 )
+text = "Take a deep breath, AEGIR:
+You might encounter them soon! "
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 128.0
-margin_top = -2432.0
-margin_right = 896.0
-margin_bottom = -2288.0
+margin_left = -1472.0
+margin_top = -2496.0
+margin_right = -628.0
+margin_bottom = -2352.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
 text = "A & D to move"
@@ -541,8 +850,64 @@ texture = ExtResource( 5 )
 [node name="pickup" parent="." instance=ExtResource( 6 )]
 position = Vector2( 4992, -1408 )
 
+[node name="boyancy_upgrade" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4288, -2368 )
+
 [node name="pickup3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 5215, -4445 )
 
 [node name="pickup2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 6592, -448 )
+
+[node name="small_fish" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4739, -1954 )
+
+[node name="small_fish2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 5068, -2007 )
+
+[node name="small_fish3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 5231, -2018 )
+
+[node name="small_fish4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 5162, -2155 )
+
+[node name="small_fish5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4830, -2151 )
+
+[node name="small_fish6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4830, -2151 )
+
+[node name="intro_area" type="Area2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="intro_area"]
+position = Vector2( -1344, 512 )
+shape = SubResource( 5 )
+
+[node name="intro_fish" type="Sprite" parent="intro_area"]
+position = Vector2( -448, 704 )
+scale = Vector2( 0.884, 0.677285 )
+texture = ExtResource( 9 )
+
+[node name="startpos" type="Position2D" parent="." groups=["startpos"]]
+position = Vector2( 256, -128 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource( 9 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="fadetoblack" type="ColorRect" parent="CanvasLayer" groups=["fadetoblack"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0313726, 0, 0.188235, 1 )

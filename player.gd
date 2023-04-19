@@ -5,6 +5,8 @@ var off_color = Color(0.1,0.1,0.1)
 #onready var green = $green.modulate
 #onready var red = $red.modulate
 
+var has_boyancy = true
+
 var time = 0
 var rot_offset = 0
 var noise = OpenSimplexNoise.new()
@@ -47,24 +49,28 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		vel.x -= 1
 	
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("ui_down") and has_boyancy:
 		if vel.y < 0:
 			vel.y = 0
 			
-	if Input.is_action_pressed("ui_down"):
+
+	if not has_boyancy and vel.y >= 0:
+		vel.y += 1
+
+	if Input.is_action_pressed("ui_down") and has_boyancy:
 		if not vel.y < 0:
 			vel.y += 1
 	
 	$Particles2D.emitting = (abs(vel.length()) > 0.4) # Input.is_action_pressed("ui_down")
 	$bubbles.stream_paused = (abs(vel.x) < 0.4)
 	
-	$release.emitting = Input.is_action_pressed("ui_down")
-	$air_release.stream_paused = !Input.is_action_pressed("ui_down")
+	$release.emitting = Input.is_action_pressed("ui_down") and has_boyancy
+	$air_release.stream_paused = !(Input.is_action_pressed("ui_down") and has_boyancy)
 
-	if(vel.x < 0):
-		$Sprite.scale.x = lerp($Sprite.scale.x, -1, 0.05*abs(vel.x)/20)
-	elif(vel.x > 0):
-		$Sprite.scale.x = lerp($Sprite.scale.x, 1, 0.05*abs(vel.x)/20)
+	# if(vel.x < 0):
+	# 	$Sprite.scale.x = lerp($Sprite.scale.x, -1, 0.05*abs(vel.x)/20)
+	# elif(vel.x > 0):
+	# 	$Sprite.scale.x = lerp($Sprite.scale.x, 1, 0.05*abs(vel.x)/20)
 
 
 
@@ -109,3 +115,7 @@ func kill():
 	reset()
 	position = bonfire
 
+
+func begin_game():
+	reset()
+	has_boyancy = false
