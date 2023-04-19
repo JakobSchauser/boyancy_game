@@ -176,7 +176,7 @@ texture = ExtResource( 8 )
 [node name="top" type="Sprite" parent="light"]
 modulate = Color( 0.290196, 1, 0, 1 )
 position = Vector2( 0, -11 )
-scale = Vector2( 0.0113555, 0.0113555 )
+scale = Vector2( 0.015, 0.015 )
 texture = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -237,7 +237,7 @@ texture = ExtResource( 2 )
 [node name="green" type="Sprite" parent="eye"]
 modulate = Color( 0.290196, 1, 0, 1 )
 position = Vector2( -7.52, 9.6 )
-scale = Vector2( 0.03, 0.1 )
+scale = Vector2( 0.03, 0.11 )
 texture = ExtResource( 2 )
 
 [node name="red2" type="Sprite" parent="eye"]
@@ -249,7 +249,7 @@ texture = ExtResource( 2 )
 [node name="red" type="Sprite" parent="eye"]
 modulate = Color( 0.996078, 0.0235294, 0.0235294, 1 )
 position = Vector2( -3.32, 9.6 )
-scale = Vector2( 0.03, 0.1 )
+scale = Vector2( 0.03, 0.11 )
 texture = ExtResource( 2 )
 
 [node name="Light2D" parent="eye" instance=ExtResource( 6 )]
