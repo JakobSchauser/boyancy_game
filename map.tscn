@@ -3,13 +3,14 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
 [ext_resource path="res://font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://sillouette.gdshader" type="Shader" id=4]
+[ext_resource path="res://silouette.tres" type="Material" id=4]
 [ext_resource path="res://crab.png" type="Texture" id=5]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://small_fish.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ictineo.png" type="Texture" id=9]
 [ext_resource path="res://intro.gd" type="Script" id=10]
+[ext_resource path="res://seaweed.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 32 )
@@ -19,10 +20,6 @@ extents = Vector2( 64, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 224 )
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 4 )
-shader_param/BG_Color = Color( 0.0313726, 0, 0.188235, 1 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 258.5, 194.5 )
@@ -785,7 +782,7 @@ You are to explore the deep sea where no human dare
 
 You are not designed to ever return to the surface 
 
-You have noticed signs of a previously unknown"
+You have recently noticed signs of a previously unknown life form"
 align = 1
 autowrap = true
 
@@ -835,14 +832,20 @@ rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
 text = "A & D to move"
 
+[node name="Seaweed" type="Sprite" parent="."]
+material = ExtResource( 4 )
+position = Vector2( 3452, -1437 )
+scale = Vector2( 1.112, 0.939087 )
+texture = ExtResource( 11 )
+
 [node name="Crab" type="Sprite" parent="."]
-material = SubResource( 3 )
+material = ExtResource( 4 )
 position = Vector2( 4223.19, -1460.69 )
 scale = Vector2( 1.112, 0.939087 )
 texture = ExtResource( 5 )
 
 [node name="Crab2" type="Sprite" parent="."]
-material = SubResource( 3 )
+material = ExtResource( 4 )
 position = Vector2( 6336, -1984 )
 scale = Vector2( 1.112, 0.939087 )
 texture = ExtResource( 5 )
