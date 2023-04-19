@@ -11,14 +11,16 @@ var time = 0
 var rot_offset = 0
 var noise = OpenSimplexNoise.new()
 
+var leg_timer = 0
+
 var vel = Vector2(0,0)
 var rising = false
 
 var bonfire = null
 
-var blink_timers = [0,0]
-var blink_frequencies = [0.1, 0.199] 
-onready var lights = [$eye/green, $eye/red]
+var blink_timers = [0,0,0]
+var blink_frequencies = [0.1, 0.199, 1] 
+onready var lights = [$eye/green, $eye/red, $light/top]
 
 func blink(delta):
 	for i in range(len(blink_timers)):
@@ -32,6 +34,7 @@ func _ready():
 	bonfire = position
 
 func _physics_process(delta):
+	leg_timer += delta
 	blink(delta)
 	time += delta
 	
@@ -62,6 +65,8 @@ func _physics_process(delta):
 			vel.y += 1
 	
 	$Particles2D.emitting = (abs(vel.length()) > 0.4) # Input.is_action_pressed("ui_down")
+	$thrust.emitting = (abs(vel.length()) > 2) # Input.is_action_pressed("ui_down")
+
 	$bubbles.stream_paused = (abs(vel.x) < 0.4)
 	
 	$release.emitting = Input.is_action_pressed("ui_down") and has_boyancy
@@ -96,9 +101,12 @@ func _physics_process(delta):
 		
 	rot_offset = lerp(rot_offset, desired_rot_offset, 0.1)
 
-	$light.rotation = vel.x * 0.1
+	$light.rotation = vel.x * 0.05
 	$eye.position.x = clamp(vel.x*0.1, -1, 1) * 7
 	# $eye.scale.y = range_lerp(sin(blink_timers[0]), -1, 1, 0.1, 0.12) 
+	for i in range($legs.get_child_count()):
+		var leg = $legs.get_child(i)
+		leg.rotation = sin(leg_timer*50+i)*0.2 * min(abs(vel.x)*0.5, 2)
 	
 
 

@@ -1,0 +1,171 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://circle.png" type="Texture" id=1]
+[ext_resource path="res://fish.gd" type="Script" id=2]
+[ext_resource path="res://square_soft_big.png" type="Texture" id=3]
+[ext_resource path="res://wobble.gdshader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+
+[node name="fish" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="head1" type="Sprite" parent="."]
+modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
+position = Vector2( 198.5, 125.252 )
+scale = Vector2( 0.0839843, 0.0869232 )
+texture = ExtResource( 3 )
+
+[node name="Rect4" type="Sprite" parent="."]
+modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
+position = Vector2( 178, 123.5 )
+scale = Vector2( 0.0878906, 0.0683594 )
+texture = ExtResource( 3 )
+
+[node name="tail" type="Node2D" parent="."]
+modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
+
+[node name="Position2D" type="Position2D" parent="tail"]
+position = Vector2( 160, 115 )
+
+[node name="Rect5" type="Sprite" parent="tail/Position2D"]
+material = SubResource( 2 )
+position = Vector2( -37.5498, 0.616211 )
+rotation = -0.0122173
+scale = Vector2( 0.160912, 0.00825609 )
+texture = ExtResource( 3 )
+
+[node name="Position2D6" type="Position2D" parent="tail"]
+position = Vector2( 159, 118 )
+
+[node name="Rect5" type="Sprite" parent="tail/Position2D6"]
+material = SubResource( 2 )
+position = Vector2( -41.4522, -1.26367 )
+rotation = -0.0122173
+scale = Vector2( 0.177834, 0.00825609 )
+texture = ExtResource( 3 )
+
+[node name="Position2D7" type="Position2D" parent="tail"]
+position = Vector2( 160, 123 )
+
+[node name="Rect5" type="Sprite" parent="tail/Position2D7"]
+material = SubResource( 2 )
+position = Vector2( -37.6199, 0.583008 )
+rotation = -0.0122173
+scale = Vector2( 0.161217, 0.00825609 )
+texture = ExtResource( 3 )
+
+[node name="Position2D8" type="Position2D" parent="tail"]
+position = Vector2( 160, 129 )
+
+[node name="Rect5" type="Sprite" parent="tail/Position2D8"]
+material = SubResource( 2 )
+position = Vector2( -40.9325, -2.33984 )
+rotation = -0.0122173
+scale = Vector2( 0.177834, 0.00358009 )
+texture = ExtResource( 3 )
+
+[node name="Position2D9" type="Position2D" parent="tail"]
+position = Vector2( 168, 130 )
+
+[node name="Rect5" type="Sprite" parent="tail/Position2D9"]
+material = SubResource( 2 )
+position = Vector2( -41.8099, -0.521484 )
+rotation = -0.0122173
+scale = Vector2( 0.177834, 0.00503736 )
+texture = ExtResource( 3 )
+
+[node name="Position2D2" type="Position2D" parent="tail"]
+position = Vector2( 164, 122 )
+
+[node name="Rect6" type="Sprite" parent="tail/Position2D2"]
+material = SubResource( 2 )
+position = Vector2( -37.0146, 1.52344 )
+rotation = -0.0122173
+scale = Vector2( 0.153973, 0.00884329 )
+texture = ExtResource( 3 )
+
+[node name="Position2D5" type="Position2D" parent="tail"]
+position = Vector2( 171, 129 )
+
+[node name="Rect6" type="Sprite" parent="tail/Position2D5"]
+material = SubResource( 2 )
+position = Vector2( -37.0146, 1.52344 )
+rotation = -0.0122173
+scale = Vector2( 0.153973, 0.00884329 )
+texture = ExtResource( 3 )
+
+[node name="Position2D3" type="Position2D" parent="tail"]
+position = Vector2( 160, 130 )
+
+[node name="Rect7" type="Sprite" parent="tail/Position2D3"]
+material = SubResource( 2 )
+position = Vector2( -34.3702, 3.97266 )
+rotation = -0.0122173
+scale = Vector2( 0.144034, 0.00766897 )
+texture = ExtResource( 3 )
+
+[node name="Position2D4" type="Position2D" parent="tail"]
+position = Vector2( 165, 137 )
+
+[node name="Rect8" type="Sprite" parent="tail/Position2D4"]
+material = SubResource( 2 )
+position = Vector2( -42.9205, 0.481445 )
+rotation = -0.0122173
+scale = Vector2( 0.173002, 0.00884326 )
+texture = ExtResource( 3 )
+
+[node name="Position2D10" type="Position2D" parent="tail"]
+position = Vector2( 166, 112 )
+
+[node name="Rect8" type="Sprite" parent="tail/Position2D10"]
+material = SubResource( 2 )
+position = Vector2( -42.9205, 0.481445 )
+rotation = -0.0122173
+scale = Vector2( 0.173002, 0.00884326 )
+texture = ExtResource( 3 )
+
+[node name="Position2D11" type="Position2D" parent="tail"]
+position = Vector2( 174, 109 )
+
+[node name="Rect8" type="Sprite" parent="tail/Position2D11"]
+position = Vector2( -42.9205, 0.481445 )
+rotation = -0.0122173
+scale = Vector2( 0.173002, 0.00884326 )
+texture = ExtResource( 3 )
+
+[node name="Position2D12" type="Position2D" parent="tail"]
+position = Vector2( 184, 107 )
+
+[node name="Rect8" type="Sprite" parent="tail/Position2D12"]
+material = SubResource( 2 )
+position = Vector2( -42.9205, 0.481445 )
+rotation = -0.0122173
+scale = Vector2( 0.173002, 0.00884326 )
+texture = ExtResource( 3 )
+
+[node name="Position2D13" type="Position2D" parent="tail"]
+position = Vector2( 176, 140 )
+
+[node name="Rect8" type="Sprite" parent="tail/Position2D13"]
+material = SubResource( 2 )
+position = Vector2( -42.9205, 0.481445 )
+rotation = -0.0122173
+scale = Vector2( 0.173002, 0.00884326 )
+texture = ExtResource( 3 )
+
+[node name="head2" type="Node2D" parent="."]
+position = Vector2( 211, 124 )
+
+[node name="head2" type="Sprite" parent="head2"]
+modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
+position = Vector2( 6.10352e-05, 0.999992 )
+scale = Vector2( 0.0898437, 0.0610397 )
+texture = ExtResource( 3 )
+
+[node name="Circle" type="Sprite" parent="head2"]
+modulate = Color( 0.921569, 0.172549, 0, 1 )
+position = Vector2( 2, 0 )
+scale = Vector2( 0.0248059, 0.0248059 )
+texture = ExtResource( 1 )
