@@ -13,18 +13,19 @@ script = ExtResource( 2 )
 
 [node name="head1" type="Sprite" parent="."]
 modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
-position = Vector2( 198.5, 125.252 )
+position = Vector2( 8.5, 4.252 )
 scale = Vector2( 0.0839843, 0.0869232 )
 texture = ExtResource( 3 )
 
 [node name="Rect4" type="Sprite" parent="."]
 modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
-position = Vector2( 178, 123.5 )
+position = Vector2( -12, 2.5 )
 scale = Vector2( 0.0878906, 0.0683594 )
 texture = ExtResource( 3 )
 
 [node name="tail" type="Node2D" parent="."]
 modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )
+position = Vector2( -190, -121 )
 
 [node name="Position2D" type="Position2D" parent="tail"]
 position = Vector2( 160, 115 )
@@ -156,7 +157,7 @@ scale = Vector2( 0.173002, 0.00884326 )
 texture = ExtResource( 3 )
 
 [node name="head2" type="Node2D" parent="."]
-position = Vector2( 211, 124 )
+position = Vector2( 21, 3 )
 
 [node name="head2" type="Sprite" parent="head2"]
 modulate = Color( 0.054902, 0.0627451, 0.188235, 1 )

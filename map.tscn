@@ -4,10 +4,10 @@
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
 [ext_resource path="res://font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://silouette.tres" type="Material" id=4]
+[ext_resource path="res://fish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://small_fish.tscn" type="PackedScene" id=8]
-[ext_resource path="res://ictineo.png" type="Texture" id=9]
 [ext_resource path="res://intro.gd" type="Script" id=10]
 [ext_resource path="res://seaweed.png" type="Texture" id=11]
 [ext_resource path="res://Crab.tscn" type="PackedScene" id=12]
@@ -516,6 +516,22 @@ shape = SubResource( 2 )
 position = Vector2( -1088, -1856 )
 shape = SubResource( 2 )
 
+[node name="vertical83" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -3189 )
+shape = SubResource( 2 )
+
+[node name="vertical84" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1600, -2741 )
+shape = SubResource( 2 )
+
+[node name="vertical86" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -3189 )
+shape = SubResource( 2 )
+
+[node name="vertical87" type="CollisionShape2D" parent="walls"]
+position = Vector2( -1088, -2741 )
+shape = SubResource( 2 )
+
 [node name="vertical20" type="CollisionShape2D" parent="walls"]
 position = Vector2( 2560, -1728 )
 shape = SubResource( 2 )
@@ -716,7 +732,7 @@ position = Vector2( 3328, 576 )
 shape = SubResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 4119, -1476 )
+position = Vector2( -1364, -2554 )
 
 [node name="breather" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1907, 981 )
@@ -753,61 +769,71 @@ position = Vector2( 4221, 695 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -1472.0
-margin_top = -2304.0
+margin_top = -2469.0
 margin_right = -704.0
-margin_bottom = -2160.0
+margin_bottom = -2325.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
 text = "S to descend"
 
 [node name="Label3" type="Label" parent="."]
-margin_left = -1536.0
+margin_left = -1547.0
 margin_top = -1344.0
-margin_right = 517.0
+margin_right = 506.0
 margin_bottom = -1024.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Moving towards the target now"
 
 [node name="Label8" type="Label" parent="."]
-margin_left = -1536.0
-margin_top = -2112.0
-margin_right = 384.0
-margin_bottom = -939.0
+margin_left = -1532.0
+margin_top = -2236.0
+margin_right = 388.0
+margin_bottom = 1436.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "You are the unmanned rover AEGIR.
 
+
+
+
+
 You are to explore the deep sea where no human dare
 
+
+
+
 You are not designed to ever return to the surface 
+
+
+
 
 You have recently noticed signs of a previously unknown life form"
 align = 1
 autowrap = true
 
 [node name="Label4" type="Label" parent="."]
-margin_left = -1536.0
+margin_left = -1547.0
 margin_top = -1088.0
-margin_right = 517.0
+margin_right = 560.0
 margin_bottom = -768.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Pressure is at 200 psi and rising"
 
 [node name="Label5" type="Label" parent="."]
-margin_left = -1536.0
+margin_left = -1547.0
 margin_top = -832.0
-margin_right = 571.0
+margin_right = 560.0
 margin_bottom = -512.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
 text = "Depth estimated at 8.2 kilometers"
 
 [node name="Label6" type="Label" parent="."]
-margin_left = -1552.0
+margin_left = -1563.0
 margin_top = -539.0
-margin_right = 583.0
+margin_right = 572.0
 margin_bottom = -219.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = ExtResource( 3 )
@@ -825,9 +851,9 @@ You might encounter them soon! "
 
 [node name="Label2" type="Label" parent="."]
 margin_left = -1472.0
-margin_top = -2496.0
+margin_top = -2661.0
 margin_right = -628.0
-margin_bottom = -2352.0
+margin_bottom = -2517.0
 rect_scale = Vector2( 0.3, 0.3 )
 custom_fonts/font = ExtResource( 3 )
 text = "A & D to move"
@@ -883,14 +909,18 @@ position = Vector2( 4240, -1563 )
 [node name="intro_area" type="Area2D" parent="."]
 script = ExtResource( 10 )
 
+[node name="intro_fish" parent="intro_area" instance=ExtResource( 5 )]
+position = Vector2( -523, 733 )
+rotation = -2.83415
+scale = Vector2( 2, 2 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="intro_area"]
-position = Vector2( -1344, 512 )
+position = Vector2( -825, 470 )
 shape = SubResource( 5 )
 
-[node name="intro_fish" type="Sprite" parent="intro_area"]
-position = Vector2( -448, 704 )
-scale = Vector2( 0.884, 0.677285 )
-texture = ExtResource( 9 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="intro_area"]
+position = Vector2( -1333, 811 )
+shape = SubResource( 5 )
 
 [node name="startpos" type="Position2D" parent="." groups=["startpos"]]
 position = Vector2( 256, -128 )

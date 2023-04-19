@@ -15,7 +15,7 @@ func _process(delta):
 	if not follow:
 		return
 
-	$intro_fish.position =$intro_fish.position.linear_interpolate(player.position, 0.05)
+	$intro_fish.position = $intro_fish.position.linear_interpolate(player.position, 0.05)
 	
 	
 func on_body_entered(body):
@@ -24,7 +24,7 @@ func on_body_entered(body):
 		follow = true
 		player = body
 
-		yield(get_tree().create_timer(1), "timeout")
+		yield(get_tree().create_timer(0.8), "timeout")
 		
 		get_tree().get_nodes_in_group("fadetoblack")[0].show()
 		player.position = get_tree().get_nodes_in_group("startpos")[0].position
@@ -32,7 +32,7 @@ func on_body_entered(body):
 
 		$intro_fish.queue_free()
 
-		yield(get_tree().create_timer(2), "timeout")
+		yield(get_tree().create_timer(3), "timeout")
 		
 		get_tree().get_nodes_in_group("fadetoblack")[0].hide()
 		player.begin_game()
