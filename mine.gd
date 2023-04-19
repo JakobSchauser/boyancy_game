@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 var time = 0
 onready var initial_scale = $center.scale
 
