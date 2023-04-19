@@ -19,15 +19,20 @@ var rising = false
 var bonfire = null
 
 var blink_timers = [0,0,0]
-var blink_frequencies = [0.1, 0.199, 1] 
+var blink_frequencies = [0.3, 0.199, 1]
+var on_time = [0.21, 0.2, 0.1] # a percent indication how long the light should be on.
 onready var lights = [$eye/green, $eye/red, $light/top]
 
 func blink(delta):
 	for i in range(len(blink_timers)):
 		blink_timers[i] += delta
+		if blink_timers[i] / blink_frequencies[i] > on_time[i]:
+			lights[i].visible = false
+		else:
+			lights[i].visible = true
+		
 		if blink_timers[i] > blink_frequencies[i]:
 			blink_timers[i] = 0
-			lights[i].visible = !lights[i].visible	
 
 
 func _ready():
