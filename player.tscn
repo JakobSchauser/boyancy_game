@@ -1,29 +1,25 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://rect.png" type="Texture" id=2]
 [ext_resource path="res://light.png" type="Texture" id=3]
 [ext_resource path="res://bubbling-6184.mp3" type="AudioStream" id=4]
 [ext_resource path="res://air_release.mp3" type="AudioStream" id=5]
-[ext_resource path="res://ictineo.png" type="Texture" id=6]
-[ext_resource path="res://sillouette.gdshader" type="Shader" id=7]
-
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 7 )
-shader_param/BG_Color = Color( 0.0313726, 0, 0.188235, 1 )
+[ext_resource path="res://Light2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rect_soft.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 46.0435
+radius = 19.2354
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0.00240964, 0.554217, 1 )
-colors = PoolColorArray( 1, 1, 1, 0.999904, 1, 1, 1, 0.999961, 0.976471, 0.976471, 0.976471, 0 )
+offsets = PoolRealArray( 0.0193548, 0.554217, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.831373, 1, 1, 1, 0.611765, 0.976471, 0.976471, 0.976471, 0 )
 
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0 ), 0.0, 3.05201, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 2.94307, 0, 0, Vector2( 0.376404, 0.285227 ), 0.294215, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
@@ -37,6 +33,22 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 0.0
+scale_random = 0.01
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 85.99
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 25.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 1.96
 scale = 0.01
 scale_random = 0.01
 scale_curve = SubResource( 4 )
@@ -45,14 +57,45 @@ color_ramp = SubResource( 6 )
 [node name="player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2" type="Sprite" parent="."]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( 0, 6 )
+scale = Vector2( 0.125, 1 )
 texture = ExtResource( 2 )
 
-[node name="Sub" type="Sprite" parent="Sprite"]
-material = SubResource( 7 )
-position = Vector2( 0, 3 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 6 )
+[node name="light" type="Node2D" parent="."]
+position = Vector2( 0, 20 )
+
+[node name="Sprite3" type="Sprite" parent="light"]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( 5.96046e-08, 3 )
+scale = Vector2( 0.0673537, 0.21875 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="light"]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( -3, 8 )
+scale = Vector2( 0.0673537, 0.21875 )
+texture = ExtResource( 2 )
+
+[node name="Sprite5" type="Sprite" parent="light"]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( 3, 8 )
+scale = Vector2( 0.0673537, 0.21875 )
+texture = ExtResource( 2 )
+
+[node name="Sprite6" type="Sprite" parent="light"]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( 0, 5 )
+rotation = 1.5526
+scale = Vector2( 0.0673537, 0.21875 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
+position = Vector2( 0.5, 0 )
+scale = Vector2( 0.96875, 1 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -61,11 +104,19 @@ shape = SubResource( 1 )
 current = true
 
 [node name="Particles2D" type="Particles2D" parent="."]
-emitting = false
-amount = 50
-lifetime = 5.0
+amount = 10
 local_coords = false
 process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="release" type="Particles2D" parent="."]
+position = Vector2( 1, 42 )
+z_index = -10
+z_as_relative = false
+amount = 50
+lifetime = 2.0
+local_coords = false
+process_material = SubResource( 7 )
 texture = ExtResource( 3 )
 
 [node name="bubbles" type="AudioStreamPlayer" parent="."]
@@ -77,3 +128,34 @@ autoplay = true
 stream = ExtResource( 5 )
 volume_db = -20.0
 autoplay = true
+
+[node name="eye" type="Node2D" parent="."]
+
+[node name="green" type="Sprite" parent="eye"]
+modulate = Color( 0.290196, 1, 0, 1 )
+position = Vector2( -8.2, 11.6 )
+scale = Vector2( 0.03, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="red" type="Sprite" parent="eye"]
+modulate = Color( 0.996078, 0.0235294, 0.0235294, 1 )
+position = Vector2( -4, 11.6 )
+scale = Vector2( 0.03, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" parent="eye" instance=ExtResource( 6 )]
+z_index = 10
+z_as_relative = false
+
+[node name="Sprite" type="Sprite" parent="eye"]
+modulate = Color( 0.792157, 0.831373, 1, 1 )
+position = Vector2( 0, 1 )
+rotation = 0.785398
+scale = Vector2( 0.01, 0.01 )
+texture = ExtResource( 3 )
+
+[node name="Light2D2" type="Light2D" parent="eye"]
+visible = false
+texture = ExtResource( 3 )
+texture_scale = 0.05
+energy = 0.5
