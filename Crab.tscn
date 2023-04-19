@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://crab_no_body.png" type="Texture" id=1]
+[ext_resource path="res://crab_lower_arm.png" type="Texture" id=2]
+[ext_resource path="res://crab_arm.png" type="Texture" id=3]
+[ext_resource path="res://Crab.gd" type="Script" id=4]
+[ext_resource path="res://silouette.tres" type="Material" id=5]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CrabLowerArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -144.026, -86.6168 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CrabLowerArm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -1.81831e-06 ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CrabLowerArm:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -144.026, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CrabLowerArm:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -86.6168, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CrabLowerArm/pivot:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.81831e-06 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CrabLowerArm/pivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -50.974, -38.3832 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "move_arms"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CrabLowerArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5.3, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -144.026, -86.6168 ), Vector2( -96, -99 ), Vector2( -144.026, -86.6168 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CrabLowerArm:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.3, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -1.81831e-06, 45.8352, -1.81831e-06 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CrabLowerArm/pivot:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5.3, 8.7, 10 ),
+"transitions": PoolRealArray( 1, 0.406126, 0.0647042, 187.403 ),
+"update": 0,
+"values": [ 1.81831e-06, 70.9959, 148.813, 1.81831e-06 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CrabLowerArm/pivot:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5.3, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -50.974, -38.3832 ), Vector2( -50.974, -38.3832 ), Vector2( -50.974, -38.3832 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 512.59, 207.116 )
+
+[node name="Crab" type="Sprite"]
+material = ExtResource( 5 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="CrabLowerArm" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( -144.026, -86.6168 )
+rotation = -3.17355e-08
+texture = ExtResource( 2 )
+
+[node name="pivot" type="Position2D" parent="CrabLowerArm"]
+position = Vector2( -50.974, -38.3832 )
+rotation = 3.17355e-08
+
+[node name="CrabArm" type="Sprite" parent="CrabLowerArm/pivot"]
+material = ExtResource( 5 )
+position = Vector2( 57, 89 )
+rotation = 0.160469
+texture = ExtResource( 3 )
+
+[node name="CrabLowerArm2" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( 73.7402, -79.8649 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+
+[node name="CrabArm" type="Sprite" parent="CrabLowerArm2"]
+material = ExtResource( 5 )
+position = Vector2( 17.0864, 39.4 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/move_arms = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 18.8848, 7.98633 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

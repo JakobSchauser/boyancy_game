@@ -9,10 +9,14 @@ var newpos = Vector2(0,0)
 
 var timer = 0
 
+var player = null
 var xscale = 1
 func _ready():
-	newpos = position + Vector2(rand_range(-1,1), rand_range(-1,1))*300
+	newpos = position + Vector2(rand_range(-1,1), rand_range(-1,1))*200
+	$small_fish.scale /= rand_range(1, 3)
 	xscale = $small_fish.scale.x
+
+	player = get_tree().get_nodes_in_group("player")[0]
 
 	# connect to on body entered
 	connect("body_entered", self, "_on_body_entered")
@@ -37,13 +41,18 @@ func _process(delta):
 	
 	if position.distance_to(newpos) < 4:
 		timer = rand_range(0.5, 3)
-		newpos = position + Vector2(rand_range(-1,1), rand_range(-1/300,1/300))*300
+		var playerpos = player.position
+
+		if (position.distance_to(playerpos) > 1000):
+			newpos = playerpos
+		else:
+			newpos = position + Vector2(rand_range(-1,1), rand_range(-1/200,1/200))*200
 
 
 func _on_body_entered(body):
 	# if the body is the player, then call the function on_player_entered
 	if body.is_in_group("player"):
-		var changex = sign(body.position.x - position.x)*300
+		var changex = sign(body.position.x - position.x)*200
 		var change = Vector2(changex, rand_range(-1,1)*3)
 		newpos = position - change 
 		timer = 0

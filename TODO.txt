@@ -2,7 +2,7 @@ Need to have:
 
 Make level
 Finish graphics
-Make intro
+-- Make intro
 Tang
 Ending
 playtest
