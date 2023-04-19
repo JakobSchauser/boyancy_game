@@ -4,13 +4,13 @@
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
 [ext_resource path="res://font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://silouette.tres" type="Material" id=4]
-[ext_resource path="res://crab.png" type="Texture" id=5]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
 [ext_resource path="res://small_fish.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ictineo.png" type="Texture" id=9]
 [ext_resource path="res://intro.gd" type="Script" id=10]
 [ext_resource path="res://seaweed.png" type="Texture" id=11]
+[ext_resource path="res://Crab.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 32 )
@@ -305,7 +305,7 @@ position = Vector2( 4224, -3200 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1280, 1216 )
+position = Vector2( 1270, 1054 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="walls"]
@@ -317,7 +317,7 @@ position = Vector2( 1536, 768 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1792, 1216 )
+position = Vector2( 1782, 1054 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="walls"]
@@ -360,16 +360,8 @@ shape = SubResource( 2 )
 position = Vector2( 1024, 576 )
 shape = SubResource( 2 )
 
-[node name="vertical4" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1024, 1024 )
-shape = SubResource( 2 )
-
 [node name="vertical6" type="CollisionShape2D" parent="walls"]
 position = Vector2( 2048, 576 )
-shape = SubResource( 2 )
-
-[node name="vertical7" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2048, 1024 )
 shape = SubResource( 2 )
 
 [node name="vertical3" type="CollisionShape2D" parent="walls"]
@@ -381,7 +373,7 @@ position = Vector2( 1792, 576 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2816, 1216 )
+position = Vector2( 2806, 1054 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="walls"]
@@ -393,7 +385,7 @@ position = Vector2( 3072, 768 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3328, 1216 )
+position = Vector2( 3318, 1054 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="walls"]
@@ -402,10 +394,6 @@ shape = SubResource( 1 )
 
 [node name="vertical8" type="CollisionShape2D" parent="walls"]
 position = Vector2( 2560, 576 )
-shape = SubResource( 2 )
-
-[node name="vertical9" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2560, 1024 )
 shape = SubResource( 2 )
 
 [node name="vertical16" type="CollisionShape2D" parent="walls"]
@@ -536,8 +524,20 @@ shape = SubResource( 2 )
 position = Vector2( 3584, 576 )
 shape = SubResource( 2 )
 
+[node name="vertical4" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1024, 862 )
+shape = SubResource( 2 )
+
+[node name="vertical7" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2048, 862 )
+shape = SubResource( 2 )
+
+[node name="vertical9" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2560, 862 )
+shape = SubResource( 2 )
+
 [node name="vertical11" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3584, 1024 )
+position = Vector2( 3584, 862 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="walls"]
@@ -716,13 +716,13 @@ position = Vector2( 3328, 576 )
 shape = SubResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1344, 128 )
+position = Vector2( 4119, -1476 )
 
 [node name="breather" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1920, 1088 )
+position = Vector2( 1907, 981 )
 
 [node name="breather2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3456, 1088 )
+position = Vector2( 3443, 981 )
 
 [node name="breather5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 5888, -384 )
@@ -746,10 +746,10 @@ position = Vector2( 2944, -2560 )
 position = Vector2( 2688, -3264 )
 
 [node name="breather3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3008, 256 )
+position = Vector2( 3005, 311 )
 
 [node name="breather4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4224, 640 )
+position = Vector2( 4221, 695 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -1472.0
@@ -834,24 +834,24 @@ text = "A & D to move"
 
 [node name="Seaweed" type="Sprite" parent="."]
 material = ExtResource( 4 )
-position = Vector2( 3452, -1437 )
-scale = Vector2( 1.112, 0.939087 )
+position = Vector2( 4264, -1389 )
+scale = Vector2( 0.269648, 0.54816 )
 texture = ExtResource( 11 )
 
-[node name="Crab" type="Sprite" parent="."]
+[node name="Seaweed2" type="Sprite" parent="Seaweed"]
 material = ExtResource( 4 )
-position = Vector2( 4223.19, -1460.69 )
-scale = Vector2( 1.112, 0.939087 )
-texture = ExtResource( 5 )
+position = Vector2( 400.523, 32.8374 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 11 )
 
-[node name="Crab2" type="Sprite" parent="."]
+[node name="Seaweed3" type="Sprite" parent="Seaweed"]
 material = ExtResource( 4 )
-position = Vector2( 6336, -1984 )
-scale = Vector2( 1.112, 0.939087 )
-texture = ExtResource( 5 )
+position = Vector2( 819.589, -43.7827 )
+scale = Vector2( 1.27158, 1.35477 )
+texture = ExtResource( 11 )
 
 [node name="pickup" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4992, -1408 )
+position = Vector2( 4994, -1336 )
 
 [node name="boyancy_upgrade" parent="." instance=ExtResource( 7 )]
 position = Vector2( 4288, -2368 )
@@ -863,22 +863,22 @@ position = Vector2( 5215, -4445 )
 position = Vector2( 6592, -448 )
 
 [node name="small_fish" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4739, -1954 )
+position = Vector2( 4149, -1366 )
 
 [node name="small_fish2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5068, -2007 )
+position = Vector2( 4478, -1419 )
 
 [node name="small_fish3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5231, -2018 )
+position = Vector2( 4641, -1430 )
 
 [node name="small_fish4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5162, -2155 )
+position = Vector2( 4572, -1567 )
 
 [node name="small_fish5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4830, -2151 )
+position = Vector2( 4240, -1563 )
 
 [node name="small_fish6" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4830, -2151 )
+position = Vector2( 4240, -1563 )
 
 [node name="intro_area" type="Area2D" parent="."]
 script = ExtResource( 10 )
@@ -914,3 +914,11 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0313726, 0, 0.188235, 1 )
+
+[node name="Crab" parent="." instance=ExtResource( 12 )]
+position = Vector2( 4744, -1377 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Crab2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 4976, 669 )
+scale = Vector2( 0.4, 0.4 )
