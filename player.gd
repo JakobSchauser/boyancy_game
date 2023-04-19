@@ -13,6 +13,7 @@ var time = 0
 var rot_offset = 0
 var noise = OpenSimplexNoise.new()
 
+var just_collided = false
 var leg_timer = 0
 
 var vel = Vector2(0,0)
@@ -100,12 +101,23 @@ func _physics_process(delta):
 	var move = move_and_slide(vel*10, Vector2(0,-1))
 
 	# on collision
+	var slide_count = get_slide_count()
 
+	if slide_count > 0:
+		if not just_collided:
+			just_collided = true
+			$hit1.play()
+			$hit2.play()
+			$hit3.play()
 
-	if get_slide_count() > 0 and is_on_ceiling():
-		if vel.y < 0:
+		if is_on_ceiling() and vel.y < 0:
 			vel.y = 0
 			$inflation.stop()
+	else:
+		just_collided = false
+	
+			
+		
 	
 	# rotate based on vel.x
 	rotation = vel.x * 0.02 + rot_offset

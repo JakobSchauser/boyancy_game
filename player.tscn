@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://rect.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://rect_soft.png" type="Texture" id=10]
 [ext_resource path="res://air_release_long.wav" type="AudioStream" id=11]
 [ext_resource path="res://inflation.mp3" type="AudioStream" id=12]
+[ext_resource path="res://sfx/impactMetal_medium_000.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sfx/footstep_grass_000.ogg" type="AudioStream" id=11]
+[ext_resource path="res://sfx/footstep_concrete_002.ogg" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0357
@@ -260,3 +263,18 @@ visible = false
 texture = ExtResource( 3 )
 texture_scale = 0.05
 energy = 0.5
+
+[node name="hit1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -20.0
+pitch_scale = 0.2
+
+[node name="hit2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = 1.748
+pitch_scale = 0.6
+
+[node name="hit3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -12.235
+pitch_scale = 0.8
