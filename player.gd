@@ -37,6 +37,11 @@ func _physics_process(delta):
 	$bubbles.stream_paused = (abs(vel.x) < 0.4)
 	$air_release.stream_paused = !Input.is_action_pressed("ui_down")
 
+	if(vel.x < 0):
+		$Sprite.scale.x = lerp($Sprite.scale.x, -1, 0.05*abs(vel.x)/20)
+	elif(vel.x > 0):
+		$Sprite.scale.x = lerp($Sprite.scale.x, 1, 0.05*abs(vel.x)/20)
+
 
 
 	vel.x = clamp(vel.x, -20, 20)
