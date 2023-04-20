@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/buoyancy.mp3-972930aa59f28cf7aa071a2fbe0d02ad.mp3str"
+
+[deps]
+
+source_file="res://buoyancy.mp3"
+dest_files=[ "res://.import/buoyancy.mp3-972930aa59f28cf7aa071a2fbe0d02ad.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

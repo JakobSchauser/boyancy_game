@@ -13,3 +13,4 @@ func _ready():
 func on_body_entered(body):
 	if(body.is_in_group("player")):
 		$AudioStreamPlayer.play()
+		$CollisionShape2D.disabled = true

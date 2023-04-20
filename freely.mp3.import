@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/freely.mp3-7ba7ef308247e10ffd53fb1432ae952f.mp3str"
+
+[deps]
+
+source_file="res://freely.mp3"
+dest_files=[ "res://.import/freely.mp3-7ba7ef308247e10ffd53fb1432ae952f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

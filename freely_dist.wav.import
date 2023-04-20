@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/freely_dist.wav-64eef3e22dbbc1fb78b5fe5cb1650207.sample"
+
+[deps]
+
+source_file="res://freely_dist.wav"
+dest_files=[ "res://.import/freely_dist.wav-64eef3e22dbbc1fb78b5fe5cb1650207.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

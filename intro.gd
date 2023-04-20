@@ -35,6 +35,8 @@ func on_body_entered(body):
 			player.position = get_tree().get_nodes_in_group("startpos")[0].position
 		else:
 			player.position = get_tree().get_nodes_in_group("endpos")[0].position
+			player.reset()
+			
 		$intro_fish.queue_free()
 
 		yield(get_tree().create_timer(4), "timeout")
