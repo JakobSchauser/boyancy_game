@@ -4,7 +4,7 @@ extends Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var active = false
+var active = true
 var direction = 1
 
 var player = null
@@ -20,7 +20,7 @@ func _ready():
 
 func _process(delta):
 	# move the enemy
-	position.x += 50 * delta * direction
+	position.x += 50*2 * delta * direction
 	position.y = lerp(position.y, player.position.y, 0.1 * delta)
 
 
@@ -33,25 +33,26 @@ func on_body_entered(body):
 func on_timeout():
 	if not active:
 		return
-
+	
+	print("timeout")
 	var v = get_viewport_rect()
 	var player_pos = player.position
-	var diff = player_pos.x - position.x
-	if abs(diff) < 2*v.x:
+	var diff = (player_pos - position).length()
+	if abs(diff) < v.size.x*0.6:
 		$Timer.start(1)
 		return
 	
-	if rand_range(0, 1) < 0.5:
-		$Timer.start(1)
-		return
-	
+	print("spawn")
 	direction = randi()%2*2 - 1
 	position = player_pos
-	position.y += rand_range(-v.size.y/2, v.size.y/2) * 0.4
+	# position.y += rand_range(-v.size.y/2, v.size.y/2) * 0.4
+	position.y = player_pos.y
 	if direction == 1:
-		position.x = v.position.x - v.size.x * 0.8
+		position.x = player_pos.x - v.size.x*0.5
+		rotation = 0 
 	else:
-		position.x = v.position.x + v.size.x * 0.8
+		position.x = player_pos.x + v.size.x*0.5
+		rotation = PI
 		
 	$Timer.start(5)
 

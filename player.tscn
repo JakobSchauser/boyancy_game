@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://rect.png" type="Texture" id=2]
@@ -9,12 +9,13 @@
 [ext_resource path="res://player_particles.tres" type="Material" id=7]
 [ext_resource path="res://circle.png" type="Texture" id=8]
 [ext_resource path="res://rotate.gd" type="Script" id=9]
-[ext_resource path="res://rect_soft.png" type="Texture" id=10]
-[ext_resource path="res://air_release_long.wav" type="AudioStream" id=11]
-[ext_resource path="res://inflation.mp3" type="AudioStream" id=12]
 [ext_resource path="res://sfx/impactMetal_medium_000.ogg" type="AudioStream" id=10]
-[ext_resource path="res://sfx/footstep_grass_000.ogg" type="AudioStream" id=11]
+[ext_resource path="res://air_release_long.wav" type="AudioStream" id=11]
 [ext_resource path="res://sfx/footstep_concrete_002.ogg" type="AudioStream" id=12]
+[ext_resource path="res://square_soft_big.png" type="Texture" id=13]
+[ext_resource path="res://sfx/footstep_grass_000.ogg" type="AudioStream" id=14]
+[ext_resource path="res://inflation.mp3" type="AudioStream" id=15]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0357
@@ -27,7 +28,7 @@ colors = PoolColorArray( 1, 1, 1, 0.999904, 1, 1, 1, 0.999961, 0.976471, 0.97647
 gradient = SubResource( 5 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0 ), 0.0, 0.347127, 0, 0, Vector2( 1, 0.112642 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.347127, 0, 0, Vector2( 1, 0.145455 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
@@ -41,7 +42,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.01
+scale = 0.02
 scale_random = 0.01
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 6 )
@@ -116,7 +117,7 @@ scale = Vector2( 0.0429688, 0.296875 )
 texture = ExtResource( 2 )
 
 [node name="light" type="Node2D" parent="."]
-position = Vector2( 0, -13 )
+position = Vector2( 0, -10 )
 
 [node name="Sprite3" type="Sprite" parent="light"]
 modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
@@ -158,16 +159,21 @@ texture = ExtResource( 8 )
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.0627451, 0.0627451, 0.192157, 1 )
 position = Vector2( 0.5, 0 )
-scale = Vector2( 0.96875, 1 )
-texture = ExtResource( 10 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -2, -67.5 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="ParallaxBackground" parent="Camera2D" instance=ExtResource( 16 )]
+offset = Vector2( 2, 0 )
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 2, 0 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 0, 9 )
@@ -188,7 +194,7 @@ texture = ExtResource( 8 )
 [node name="release" type="Particles2D" parent="."]
 position = Vector2( 0, 23 )
 z_as_relative = false
-amount = 50
+amount = 20
 local_coords = false
 process_material = ExtResource( 7 )
 texture = ExtResource( 8 )
@@ -205,14 +211,14 @@ volume_db = -30.0
 
 [node name="air_release_long" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = -20.0
+volume_db = -17.0
 pitch_scale = 0.8
 autoplay = true
 
 [node name="inflation" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-volume_db = -20.0
-pitch_scale = 0.8
+stream = ExtResource( 15 )
+volume_db = -25.0
+pitch_scale = 0.5
 
 [node name="eye" type="Node2D" parent="."]
 
@@ -266,15 +272,15 @@ energy = 0.5
 
 [node name="hit1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -20.0
-pitch_scale = 0.2
+volume_db = -30.0
+pitch_scale = 0.1
 
 [node name="hit2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = 1.748
-pitch_scale = 0.6
+volume_db = -25.0
+pitch_scale = 0.2
 
 [node name="hit3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -12.235
-pitch_scale = 0.8
+stream = ExtResource( 14 )
+volume_db = -26.482
+pitch_scale = 0.31

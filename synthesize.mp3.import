@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/synthesize.mp3-b5184e1fca2ff6362d7c91d878ec86ce.mp3str"
+
+[deps]
+
+source_file="res://synthesize.mp3"
+dest_files=[ "res://.import/synthesize.mp3-b5184e1fca2ff6362d7c91d878ec86ce.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

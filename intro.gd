@@ -4,6 +4,9 @@ extends Area2D
 var follow = false
 var player = null
 
+
+export var outro = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# connect onbodyentered signal to the function on_body_entered
@@ -27,13 +30,19 @@ func on_body_entered(body):
 		yield(get_tree().create_timer(0.8), "timeout")
 		
 		get_tree().get_nodes_in_group("fadetoblack")[0].show()
-		player.position = get_tree().get_nodes_in_group("startpos")[0].position
 		follow = false
-
+		if not outro:
+			player.position = get_tree().get_nodes_in_group("startpos")[0].position
+		else:
+			player.position = get_tree().get_nodes_in_group("endpos")[0].position
 		$intro_fish.queue_free()
 
-		yield(get_tree().create_timer(3), "timeout")
+		yield(get_tree().create_timer(4), "timeout")
 		
 		get_tree().get_nodes_in_group("fadetoblack")[0].hide()
-		player.begin_game()
+
+		if not outro:
+			player.begin_game()
+		else:
+			player.reset()
 

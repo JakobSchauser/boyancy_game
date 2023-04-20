@@ -9,6 +9,8 @@ radius = 64.0
 
 [node name="pickup" type="Area2D"]
 position = Vector2( 704, 320 )
+z_index = 4096
+z_as_relative = false
 script = ExtResource( 1 )
 
 [node name="txt" type="Label" parent="."]

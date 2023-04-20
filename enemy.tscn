@@ -4,18 +4,19 @@
 [ext_resource path="res://fish.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 197.5, 67.5 )
+extents = Vector2( 50.5, 18 )
 
 [node name="enemy" type="Area2D"]
 script = ExtResource( 1 )
 
 [node name="fish" parent="." instance=ExtResource( 2 )]
 position = Vector2( -46, -3 )
-scale = Vector2( 3, 3 )
+z_index = 4096
+z_as_relative = false
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -113.5, 10.5 )
+position = Vector2( -62.5, 2 )
 shape = SubResource( 1 )

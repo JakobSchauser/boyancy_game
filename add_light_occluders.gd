@@ -28,5 +28,4 @@ func _ready():
 		
 		add_child(o)
 		o.global_position = Vector2()
-		print(o)
 				

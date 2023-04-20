@@ -76,7 +76,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("ui_up") and can_rise:
 		can_rise = false
-		vel.y = -20
+		vel.y = -15
 		$inflation.play()
 	
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tts_test.mp3-73fe65e8953322b26fc383f5d1ee8094.mp3str"
+
+[deps]
+
+source_file="res://tts_test.mp3"
+dest_files=[ "res://.import/tts_test.mp3-73fe65e8953322b26fc383f5d1ee8094.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
