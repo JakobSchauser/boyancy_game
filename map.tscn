@@ -1766,6 +1766,7 @@ position = Vector2( -3909, -5489 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1799,6 +1800,9 @@ texture = ExtResource( 14 )
 position = Vector2( 3421, -2504 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine/mine" index="2"]
+scale = Vector2( 1, 0.55 )
+
 [node name="mine7" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3421, -2504 )
 scale = Vector2( 2, 2 )
@@ -1806,6 +1810,9 @@ scale = Vector2( 2, 2 )
 [node name="mine10" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3654, -3203 )
 scale = Vector2( 2, 2 )
+
+[node name="rope_container" parent="mine10/mine" index="2"]
+scale = Vector2( 1, 1.12 )
 
 [node name="mine4" parent="." instance=ExtResource( 17 )]
 position = Vector2( 2696, -1848 )
@@ -1823,13 +1830,22 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2735, -2175 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine34/mine" index="2"]
+scale = Vector2( 1, 0.15 )
+
 [node name="mine3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 492, -3117 )
 scale = Vector2( 3, 3 )
 
+[node name="rope_container" parent="mine3/mine" index="2"]
+scale = Vector2( 1, 0.257 )
+
 [node name="mine23" parent="." instance=ExtResource( 17 )]
 position = Vector2( -121, -3790 )
 scale = Vector2( 3, 3 )
+
+[node name="rope_container" parent="mine23/mine" index="2"]
+scale = Vector2( 1, 0.41 )
 
 [node name="mine13" parent="." instance=ExtResource( 17 )]
 position = Vector2( 308, -4099 )
@@ -1839,6 +1855,9 @@ scale = Vector2( 2, 2 )
 position = Vector2( -274, -4157 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine31/mine" index="2"]
+scale = Vector2( 1, 0.91 )
+
 [node name="mine32" parent="." instance=ExtResource( 17 )]
 position = Vector2( -10, -3955 )
 scale = Vector2( 2, 2 )
@@ -1847,13 +1866,22 @@ scale = Vector2( 2, 2 )
 position = Vector2( 582, -3997 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine15/mine" index="2"]
+scale = Vector2( 1, 0.25 )
+
 [node name="mine18" parent="." instance=ExtResource( 17 )]
 position = Vector2( 733, -4003 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine18/mine" index="2"]
+scale = Vector2( 1, 0.2 )
+
 [node name="mine19" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1012, -4055 )
 scale = Vector2( 2.5, 2.5 )
+
+[node name="rope_container" parent="mine19/mine" index="2"]
+scale = Vector2( 1, 0.28 )
 
 [node name="mine35" parent="." instance=ExtResource( 17 )]
 position = Vector2( 2484, -3854 )
@@ -1862,6 +1890,9 @@ scale = Vector2( 2.5, 2.5 )
 [node name="mine20" parent="." instance=ExtResource( 17 )]
 position = Vector2( 838, -4272 )
 scale = Vector2( 2, 2 )
+
+[node name="rope_container" parent="mine20/mine" index="2"]
+scale = Vector2( 1, 0.2 )
 
 [node name="mine21" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1172, -3817 )
@@ -1875,9 +1906,15 @@ scale = Vector2( 2, 2 )
 position = Vector2( 1886, -4227 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine27/mine" index="2"]
+scale = Vector2( 1, 0.2 )
+
 [node name="mine28" parent="." instance=ExtResource( 17 )]
 position = Vector2( 2007, -4222 )
 scale = Vector2( 2, 2 )
+
+[node name="rope_container" parent="mine28/mine" index="2"]
+scale = Vector2( 1, 0.35 )
 
 [node name="mine29" parent="." instance=ExtResource( 17 )]
 position = Vector2( 2007, -4222 )
@@ -1887,9 +1924,15 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2107, -4231 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine30/mine" index="2"]
+scale = Vector2( 1, 0.18 )
+
 [node name="mine26" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1308, -4200 )
 scale = Vector2( 2, 2 )
+
+[node name="rope_container" parent="mine26/mine" index="2"]
+scale = Vector2( 1, 0.5 )
 
 [node name="mine22" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1177, -4175 )
@@ -1899,31 +1942,55 @@ scale = Vector2( 2, 2 )
 position = Vector2( 1601, -3180 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine24/mine" index="2"]
+scale = Vector2( 1, 0.25 )
+
 [node name="mine16" parent="." instance=ExtResource( 17 )]
 position = Vector2( 736, -3802 )
 scale = Vector2( 2, 2 )
+
+[node name="rope_container" parent="mine16/mine" index="2"]
+visible = false
 
 [node name="mine14" parent="." instance=ExtResource( 17 )]
 position = Vector2( 305, -3901 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine14/mine" index="2"]
+scale = Vector2( 1, 0.17 )
+
 [node name="mine17" parent="." instance=ExtResource( 17 )]
 position = Vector2( 587, -4261 )
 scale = Vector2( 2, 2 )
 
+[node name="rope_container" parent="mine17/mine" index="2"]
+scale = Vector2( 1, 0.2 )
+
 [node name="mine5" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3029, -4572 )
 
+[node name="rope_container" parent="mine5/mine" index="2"]
+scale = Vector2( 1, 0.9 )
+
 [node name="mine8" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3110, -5838 )
+
+[node name="rope_container" parent="mine8/mine" index="2"]
+scale = Vector2( 1, 1.3 )
 
 [node name="mine9" parent="." instance=ExtResource( 17 )]
 position = Vector2( 2914, -7434 )
 scale = Vector2( 3, 3 )
 
+[node name="rope_container" parent="mine9/mine" index="2"]
+scale = Vector2( 1, 0.73 )
+
 [node name="mine11" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3125, -7214 )
 scale = Vector2( 3, 3 )
+
+[node name="rope_container" parent="mine11/mine" index="2"]
+scale = Vector2( 1, 0.1 )
 
 [node name="mine12" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3068, -6288 )
@@ -1931,6 +1998,9 @@ scale = Vector2( 3, 3 )
 
 [node name="mine6" parent="." instance=ExtResource( 17 )]
 position = Vector2( 3125, -4572 )
+
+[node name="rope_container" parent="mine6/mine" index="2"]
+scale = Vector2( 1, 0.9 )
 
 [node name="CameraChanger" type="Area2D" parent="."]
 script = ExtResource( 18 )
@@ -1940,3 +2010,27 @@ position = Vector2( -1308, -5539 )
 shape = SubResource( 14 )
 
 [editable path="walls/boyancy_upgrade"]
+[editable path="mine"]
+[editable path="mine10"]
+[editable path="mine34"]
+[editable path="mine3"]
+[editable path="mine23"]
+[editable path="mine13"]
+[editable path="mine31"]
+[editable path="mine15"]
+[editable path="mine18"]
+[editable path="mine19"]
+[editable path="mine20"]
+[editable path="mine27"]
+[editable path="mine28"]
+[editable path="mine30"]
+[editable path="mine26"]
+[editable path="mine24"]
+[editable path="mine16"]
+[editable path="mine14"]
+[editable path="mine17"]
+[editable path="mine5"]
+[editable path="mine8"]
+[editable path="mine9"]
+[editable path="mine11"]
+[editable path="mine6"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://pickup.gd" type="Script" id=1]
 [ext_resource path="res://font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://circle.png" type="Texture" id=4]
+[ext_resource path="res://seastar.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 64.0
+radius = 39.3192
 
 [node name="pickup" type="Area2D"]
 position = Vector2( 704, 320 )
@@ -26,5 +27,114 @@ text = "N of M pieces found"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+[node name="Sprite" type="Node2D" parent="."]
+modulate = Color( 0.0705882, 0.0705882, 0.227451, 1 )
+scale = Vector2( 0.42, 0.42 )
+script = ExtResource( 5 )
+
+[node name="Circle" type="Sprite" parent="Sprite"]
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 4 )
+
+[node name="arms" type="Node2D" parent="Sprite"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="arm" type="Node2D" parent="Sprite/arms"]
+position = Vector2( 5, -48 )
+rotation = -1.4992
+scale = Vector2( 0.2, 0.13 )
+
+[node name="Circle" type="Sprite" parent="Sprite/arms/arm"]
+position = Vector2( 73.3264, 10.9026 )
+scale = Vector2( 1.16279, 0.725694 )
+texture = ExtResource( 4 )
+
+[node name="Circle2" type="Sprite" parent="Sprite/arms/arm"]
+position = Vector2( 285.5, 5 )
+scale = Vector2( 0.841797, 0.313477 )
+texture = ExtResource( 4 )
+
+[node name="Circle3" type="Sprite" parent="Sprite/arms/arm"]
+position = Vector2( 310.5, 0 )
+scale = Vector2( 0.841797, 0.156738 )
+texture = ExtResource( 4 )
+
+[node name="arm2" type="Node2D" parent="Sprite/arms"]
+position = Vector2( -37, -18 )
+rotation = -2.4713
+scale = Vector2( 0.2, 0.13 )
+
+[node name="Circle" type="Sprite" parent="Sprite/arms/arm2"]
+position = Vector2( 98.1096, 1.35785 )
+scale = Vector2( 1.06598, 0.670127 )
+texture = ExtResource( 4 )
+
+[node name="Circle2" type="Sprite" parent="Sprite/arms/arm2"]
+position = Vector2( 285.5, 5 )
+scale = Vector2( 0.841797, 0.313477 )
+texture = ExtResource( 4 )
+
+[node name="Circle3" type="Sprite" parent="Sprite/arms/arm2"]
+position = Vector2( 310.5, 0 )
+scale = Vector2( 0.841797, 0.156738 )
+texture = ExtResource( 4 )
+
+[node name="arm3" type="Node2D" parent="Sprite/arms"]
+position = Vector2( 40, -16 )
+rotation = -0.30282
+scale = Vector2( 0.2, 0.13 )
+
+[node name="Circle" type="Sprite" parent="Sprite/arms/arm3"]
+position = Vector2( 93.9805, 24.2098 )
+scale = Vector2( 1.08211, 0.633714 )
+texture = ExtResource( 4 )
+
+[node name="Circle2" type="Sprite" parent="Sprite/arms/arm3"]
+position = Vector2( 285.5, 5 )
+scale = Vector2( 0.841797, 0.313477 )
+texture = ExtResource( 4 )
+
+[node name="Circle3" type="Sprite" parent="Sprite/arms/arm3"]
+position = Vector2( 310.5, 0 )
+scale = Vector2( 0.841797, 0.156738 )
+texture = ExtResource( 4 )
+
+[node name="arm4" type="Node2D" parent="Sprite/arms"]
+position = Vector2( -28, 25 )
+rotation = 2.21936
+scale = Vector2( 0.2, 0.13 )
+
+[node name="Circle" type="Sprite" parent="Sprite/arms/arm4"]
+position = Vector2( 102.12, -8.38667 )
+scale = Vector2( 1.05031, 0.617722 )
+texture = ExtResource( 4 )
+
+[node name="Circle2" type="Sprite" parent="Sprite/arms/arm4"]
+position = Vector2( 285.5, 5 )
+scale = Vector2( 0.841797, 0.313477 )
+texture = ExtResource( 4 )
+
+[node name="Circle3" type="Sprite" parent="Sprite/arms/arm4"]
+position = Vector2( 310.5, 0 )
+scale = Vector2( 0.841797, 0.156738 )
+texture = ExtResource( 4 )
+
+[node name="arm5" type="Node2D" parent="Sprite/arms"]
+position = Vector2( 27, 32 )
+rotation = 1.01444
+scale = Vector2( 0.2, 0.13 )
+
+[node name="Circle" type="Sprite" parent="Sprite/arms/arm5"]
+position = Vector2( 81.9075, 28.4281 )
+scale = Vector2( 1.12927, 0.657915 )
+texture = ExtResource( 4 )
+
+[node name="Circle2" type="Sprite" parent="Sprite/arms/arm5"]
+position = Vector2( 285.5, 5 )
+scale = Vector2( 0.841797, 0.313477 )
+texture = ExtResource( 4 )
+
+[node name="Circle3" type="Sprite" parent="Sprite/arms/arm5"]
+position = Vector2( 310.5, 0 )
+scale = Vector2( 0.841797, 0.156738 )
+texture = ExtResource( 4 )

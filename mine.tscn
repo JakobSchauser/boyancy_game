@@ -70,7 +70,10 @@ rotation = -2.3378
 scale = Vector2( 0.0382813, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="rope" type="Sprite" parent="mine"]
+[node name="rope_container" type="Node2D" parent="mine"]
+scale = Vector2( 1, 0.3 )
+
+[node name="rope" type="Sprite" parent="mine/rope_container"]
 material = SubResource( 1 )
 position = Vector2( -1, 502 )
 scale = Vector2( 0.02, 10 )

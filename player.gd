@@ -129,7 +129,7 @@ func _physics_process(delta):
 		
 	rot_offset = lerp(rot_offset, desired_rot_offset, 0.1)
 
-	$light.rotation = vel.x * 0.05
+	$light.rotation = vel.x * 0.03
 	$eye.position.x = clamp(vel.x*0.1, -1, 1) * 7
 	# $eye.scale.y = range_lerp(sin(blink_timers[0]), -1, 1, 0.1, 0.12) 
 	for i in range($legs.get_child_count()):
