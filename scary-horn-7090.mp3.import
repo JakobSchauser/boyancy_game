@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/scary-horn-7090.mp3-f492e8bb91e05e9d993c608ec036b66a.mp3str"
+
+[deps]
+
+source_file="res://scary-horn-7090.mp3"
+dest_files=[ "res://.import/scary-horn-7090.mp3-f492e8bb91e05e9d993c608ec036b66a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

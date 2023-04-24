@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://crab_no_body.png" type="Texture" id=1]
 [ext_resource path="res://crab_lower_arm.png" type="Texture" id=2]
 [ext_resource path="res://crab_arm.png" type="Texture" id=3]
 [ext_resource path="res://Crab.gd" type="Script" id=4]
 [ext_resource path="res://silouette.tres" type="Material" id=5]
+[ext_resource path="res://bomb.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -133,7 +134,7 @@ tracks/3/keys = {
 extents = Vector2( 512.59, 207.116 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 226.5, 200 )
+extents = Vector2( 153, 145 )
 
 [node name="Crab" type="Sprite"]
 material = ExtResource( 5 )
@@ -177,10 +178,11 @@ anims/move_arms = SubResource( 1 )
 position = Vector2( 18.8848, 7.98633 )
 shape = SubResource( 3 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -30.5, -6 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( -35, 49 )
 shape = SubResource( 4 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

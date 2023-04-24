@@ -24,20 +24,24 @@ func _process(delta):
 func on_body_entered(body):
 	# if the body is the player, then call the function on_player_entered
 	if body.is_in_group("player"):
-		follow = true
 		player = body
+		if not outro:
+			follow = true
+			yield(get_tree().create_timer(0.8), "timeout")
+		else:
+			yield(get_tree().create_timer(1.5), "timeout")
+			player.has_boyancy = false
 
-		yield(get_tree().create_timer(0.8), "timeout")
-		
 		get_tree().get_nodes_in_group("fadetoblack")[0].show()
 		follow = false
+
 		if not outro:
 			player.position = get_tree().get_nodes_in_group("startpos")[0].position
 		else:
 			player.position = get_tree().get_nodes_in_group("endpos")[0].position
 			player.reset()
-			
-		$intro_fish.queue_free()
+		if not outro:
+			$intro_fish.queue_free()
 
 		yield(get_tree().create_timer(4), "timeout")
 		

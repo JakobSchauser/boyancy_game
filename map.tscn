@@ -3,6 +3,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://breather.tscn" type="PackedScene" id=2]
 [ext_resource path="res://font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scary-horn-7090.mp3" type="AudioStream" id=4]
 [ext_resource path="res://fish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://pickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boyancy_upgrade.tscn" type="PackedScene" id=7]
@@ -20,7 +21,6 @@
 [ext_resource path="res://play_when_enter.gd" type="Script" id=20]
 [ext_resource path="res://takeadeepbreath.wav" type="AudioStream" id=21]
 [ext_resource path="res://Depth.wav" type="AudioStream" id=22]
-[ext_resource path="res://output.wav" type="AudioStream" id=23]
 [ext_resource path="res://freely_dist.wav" type="AudioStream" id=24]
 [ext_resource path="res://trytrya.wav" type="AudioStream" id=25]
 
@@ -211,7 +211,15 @@ position = Vector2( 3388, -1183 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D20" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3840, -1280 )
+position = Vector2( 3851, -1369 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D148" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3481, -1384 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D149" type="CollisionShape2D" parent="walls"]
+position = Vector2( 4261, -1359 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D145" type="CollisionShape2D" parent="walls"]
@@ -347,7 +355,23 @@ position = Vector2( 1407, -2749 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D144" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2208, -2802 )
+position = Vector2( 2195, -2832 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D153" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2830, -2360 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D154" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2822, -2424 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D155" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2822, -2483 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D156" type="CollisionShape2D" parent="walls"]
+position = Vector2( 2815, -2521 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D79" type="CollisionShape2D" parent="walls"]
@@ -368,6 +392,22 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape2D70" type="CollisionShape2D" parent="walls"]
 position = Vector2( 926, -2997 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D123" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1240, -3428 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D151" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1364, -3421 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D152" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1330, -3367 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D150" type="CollisionShape2D" parent="walls"]
+position = Vector2( 1116, -3478 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D117" type="CollisionShape2D" parent="walls"]
@@ -520,10 +560,6 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D80" type="CollisionShape2D" parent="walls"]
 position = Vector2( 1211, -3651 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D123" type="CollisionShape2D" parent="walls"]
-position = Vector2( 1205, -3364 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D82" type="CollisionShape2D" parent="walls"]
@@ -1150,16 +1186,8 @@ shape = SubResource( 2 )
 position = Vector2( 2773, -7196 )
 shape = SubResource( 2 )
 
-[node name="vertical122" type="CollisionShape2D" parent="walls"]
-position = Vector2( 2709, -7484 )
-shape = SubResource( 2 )
-
 [node name="vertical123" type="CollisionShape2D" parent="walls"]
 position = Vector2( 3253, -7196 )
-shape = SubResource( 2 )
-
-[node name="vertical124" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3317, -7452 )
 shape = SubResource( 2 )
 
 [node name="vertical120" type="CollisionShape2D" parent="walls"]
@@ -1203,7 +1231,7 @@ position = Vector2( 3744, -2014 )
 shape = SubResource( 2 )
 
 [node name="vertical45" type="CollisionShape2D" parent="walls"]
-position = Vector2( 3360, -2167 )
+position = Vector2( 3320, -2200 )
 shape = SubResource( 2 )
 
 [node name="vertical44" type="CollisionShape2D" parent="walls"]
@@ -1266,6 +1294,10 @@ shape = SubResource( 10 )
 position = Vector2( 3170, -1666 )
 shape = SubResource( 10 )
 
+[node name="vertical122" type="CollisionShape2D" parent="walls"]
+position = Vector2( 3512, -1662 )
+shape = SubResource( 10 )
+
 [node name="vertical89" type="CollisionShape2D" parent="walls"]
 position = Vector2( 3328, 320 )
 shape = SubResource( 10 )
@@ -1307,7 +1339,7 @@ position = Vector2( 64, -3712 )
 position = Vector2( 951, -3777 )
 
 [node name="breather22" parent="walls" instance=ExtResource( 2 )]
-position = Vector2( 1667, -2944 )
+position = Vector2( 1602, -2947 )
 
 [node name="breather23" parent="walls" instance=ExtResource( 2 )]
 position = Vector2( 1959, -3185 )
@@ -1565,23 +1597,36 @@ position = Vector2( -1260, -570 )
 script = ExtResource( 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Label7/Area2D4"]
-position = Vector2( 6270, 720 )
+position = Vector2( 6260, 1010 )
 shape = SubResource( 16 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="walls/Label7/Area2D4"]
-stream = ExtResource( 23 )
-volume_db = -32.0
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.8
+
+[node name="Area2D5" type="Area2D" parent="walls/Label7"]
+position = Vector2( 37110, -81300 )
+script = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Label7/Area2D5"]
+position = Vector2( 6030, 2250 )
+shape = SubResource( 16 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="walls/Label7/Area2D5"]
+stream = ExtResource( 4 )
+volume_db = -10.0
 pitch_scale = 0.8
 
 [node name="Label10" type="Label" parent="walls"]
-margin_left = 1941.0
-margin_top = 64.0
-margin_right = 4076.0
-margin_bottom = 641.0
+margin_left = 1889.0
+margin_top = 66.0
+margin_right = 4024.0
+margin_bottom = 643.0
 rect_scale = Vector2( 0.1, 0.1 )
 custom_fonts/font = ExtResource( 3 )
-text = "W
-to fill air tank"
+text = "W to temporarily
+fill air tank"
 align = 1
 autowrap = true
 
@@ -1617,7 +1662,7 @@ text = "AEGIR"
 align = 1
 
 [node name="pickup" parent="walls" instance=ExtResource( 6 )]
-position = Vector2( 4334, -1349 )
+position = Vector2( 4404, -1443 )
 
 [node name="pickup7" parent="walls" instance=ExtResource( 6 )]
 position = Vector2( 4025, 182 )
@@ -1644,7 +1689,7 @@ position = Vector2( 1061, -4182 )
 position = Vector2( 1543, -4190 )
 
 [node name="boyancy_upgrade" parent="walls" instance=ExtResource( 7 )]
-position = Vector2( 2356, -2058 )
+position = Vector2( 2280, -2058 )
 
 [node name="txt" parent="walls/boyancy_upgrade" index="0"]
 margin_left = -453.0
@@ -1656,7 +1701,7 @@ pack!"
 align = 1
 
 [node name="pickup3" parent="walls" instance=ExtResource( 6 )]
-position = Vector2( 3583, -4116 )
+position = Vector2( 3582, -4116 )
 
 [node name="pickup10" parent="walls" instance=ExtResource( 6 )]
 position = Vector2( 3077, -4478 )
@@ -1699,7 +1744,7 @@ position = Vector2( 3095, -1291 )
 scale = Vector2( 0.633276, 0.611085 )
 
 [node name="Crab5" parent="walls" instance=ExtResource( 12 )]
-position = Vector2( 4816, -1484 )
+position = Vector2( 4856, -1575 )
 scale = Vector2( 1.37413, 1.32598 )
 
 [node name="Crab3" parent="walls" instance=ExtResource( 12 )]
@@ -1707,7 +1752,7 @@ position = Vector2( 2456, -1401 )
 scale = Vector2( -0.565232, 0.599902 )
 
 [node name="Crab4" parent="walls" instance=ExtResource( 12 )]
-position = Vector2( 1317, -3492 )
+position = Vector2( 1319, -3556 )
 scale = Vector2( -0.565232, 0.599902 )
 
 [node name="Crab6" parent="walls" instance=ExtResource( 12 )]
@@ -1719,7 +1764,7 @@ position = Vector2( 4303, 156 )
 scale = Vector2( 0.791507, 0.793995 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -2900, -5544 )
+position = Vector2( -2898, -5544 )
 
 [node name="intro_area" type="Area2D" parent="."]
 position = Vector2( 25, -22 )
@@ -1731,7 +1776,7 @@ rotation = -3.33046
 scale = Vector2( 4, 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="intro_area"]
-position = Vector2( -829, 478 )
+position = Vector2( -834, 510 )
 shape = SubResource( 5 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="intro_area"]
@@ -1739,19 +1784,45 @@ position = Vector2( -1333, 811 )
 shape = SubResource( 5 )
 
 [node name="intro_fish2" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 3765, -7461 )
 rotation = 2.95273
 scale = Vector2( 4, 4 )
 
+[node name="intro_fish" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3028, -8144 )
+rotation = 1.55339
+scale = Vector2( 10, 10 )
+
+[node name="intro_fish3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3353, -7513 )
+rotation = 2.95273
+scale = Vector2( 3.29796, 2.89591 )
+
+[node name="intro_fish5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3258, -7665 )
+rotation = 2.34215
+scale = Vector2( 3.29796, 2.89591 )
+
+[node name="intro_fish6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2610, -7903 )
+rotation = 0.7487
+scale = Vector2( 3.29796, 2.89591 )
+
+[node name="intro_fish4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2693, -7668 )
+rotation = 0.180209
+scale = Vector2( 3.29796, 2.89591 )
+
+[node name="intro_fish7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2627, -7519 )
+rotation = -0.133057
+scale = Vector2( 3.29796, 2.89591 )
+
 [node name="outro_area" type="Area2D" parent="."]
-position = Vector2( 846, -7779 )
+position = Vector2( 869, -7621 )
 script = ExtResource( 10 )
 outro = true
-
-[node name="intro_fish" parent="outro_area" instance=ExtResource( 5 )]
-position = Vector2( 2152, -21 )
-rotation = -3.33046
-scale = Vector2( 6, 6 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="outro_area"]
 position = Vector2( 2162, 152 )
@@ -1796,11 +1867,7 @@ process_material = SubResource( 12 )
 texture = ExtResource( 14 )
 
 [node name="mine" parent="." instance=ExtResource( 17 )]
-position = Vector2( 3421, -2504 )
-scale = Vector2( 2, 2 )
-
-[node name="mine7" parent="." instance=ExtResource( 17 )]
-position = Vector2( 3421, -2504 )
+position = Vector2( 3376, -2489 )
 scale = Vector2( 2, 2 )
 
 [node name="mine10" parent="." instance=ExtResource( 17 )]
@@ -1816,12 +1883,16 @@ position = Vector2( 3072, -2496 )
 scale = Vector2( 2, 2 )
 
 [node name="mine33" parent="." instance=ExtResource( 17 )]
-position = Vector2( 2787, -2401 )
+position = Vector2( 2709, -2355 )
 scale = Vector2( 2, 2 )
 
 [node name="mine34" parent="." instance=ExtResource( 17 )]
-position = Vector2( 2735, -2175 )
+position = Vector2( 2727, -2127 )
 scale = Vector2( 2, 2 )
+
+[node name="rope" parent="mine34/mine" index="2"]
+position = Vector2( 0.5, 63.5 )
+scale = Vector2( 0.02, 1 )
 
 [node name="mine3" parent="." instance=ExtResource( 17 )]
 position = Vector2( 492, -3117 )
@@ -1939,4 +2010,14 @@ script = ExtResource( 18 )
 position = Vector2( -1308, -5539 )
 shape = SubResource( 14 )
 
+[node name="CameraChanger2" type="Area2D" parent="."]
+position = Vector2( 4320, -1886 )
+script = ExtResource( 18 )
+outro = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraChanger2"]
+position = Vector2( -1308, -5539 )
+shape = SubResource( 14 )
+
 [editable path="walls/boyancy_upgrade"]
+[editable path="mine34"]

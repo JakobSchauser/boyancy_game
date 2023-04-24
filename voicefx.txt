@@ -1,0 +1,1 @@
+https://voicechanger.io/voicemaker/#!/{%22effects%22:[{%22name%22:%22telephone%22,%22params%22:{%22magnitude%22:1,%22lowPassFreq%22:2000,%22highPassFreq%22:500}},{%22name%22:%22megaphone%22,%22params%22:{%22distortion%22:161}}],%22version%22:1}

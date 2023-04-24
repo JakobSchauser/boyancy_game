@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://boyancy_upgrade.gd" type="Script" id=1]
 [ext_resource path="res://font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://silouette.tres" type="Material" id=3]
+[ext_resource path="res://jetpack.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 64.0
@@ -27,4 +28,6 @@ text = "My boyancy pack!"
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+material = ExtResource( 3 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
