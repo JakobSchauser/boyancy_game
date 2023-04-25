@@ -9,7 +9,7 @@
 radius = 64.0
 
 [node name="boyancy_upgrade" type="Area2D"]
-position = Vector2( 4992, -1408 )
+position = Vector2( 400, 151 )
 z_index = 4096
 z_as_relative = false
 script = ExtResource( 1 )
